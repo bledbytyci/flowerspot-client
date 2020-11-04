@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 const mapDispatchToProps = dispatch => {
 	return {
-		getFlowers: filter => dispatch(FlowerActionCreators.getFlowers(filter))  
+		getFlowersFiltered: filter => dispatch(FlowerActionCreators.getFlowersFiltered(filter))  
 	}
 }
 
@@ -22,16 +22,16 @@ class Header extends Component {
 
 	componentDidUpdate(prevState) {
 		const { filter } = this.state;
-		const { getFlowers } = this.props;
+		const { getFlowersFiltered } = this.props;
 
 		if(prevState.filter !== this.state.filter){
-			getFlowers(filter);
+			getFlowersFiltered(filter);
 		}
 	}
 
 	static get propTypes(){
 		return {
-			getFlowers: PropTypes.func
+			getFlowersFiltered: PropTypes.func
 		}
 	}
 

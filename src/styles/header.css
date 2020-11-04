@@ -1,7 +1,7 @@
 .header {
     padding-top: 10rem;
     padding-bottom: calc(10rem - 56px);
-    background-image: url(/src/flower.jpg);
+    background-image: url(/src/flower.png);
     background-position: center center;
     background-size: cover;
 }

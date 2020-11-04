@@ -1,4 +1,5 @@
 import FlowerActionConstants from './flowerActionConstants';
+
 const getFlowers = () => ({
     type: FlowerActionConstants.GET_FLOWERS,
     payload: {}
@@ -14,8 +15,26 @@ const getFlowersError = error => ({
     payload: error
 });
 
+const getFlowersFiltered = (filter) => ({
+    type: FlowerActionConstants.GET_FLOWERS_FILTERED,
+    payload: filter
+});
+
+const getFlowersFilteredSuccess = flowers => ({
+    type: FlowerActionConstants.GET_FLOWERS_FILTERED_SUCCESS,
+    payload: flowers
+});
+
+const getFlowersFilteredError = error => ({
+    type: FlowerActionConstants.GET_FLOWERS_FILTERED_ERROR,
+    payload: error
+});
+
 export default {
 	getFlowers,
 	getFlowersSuccess,
-	getFlowersError
+    getFlowersError,
+    getFlowersFiltered,
+    getFlowersFilteredSuccess,
+    getFlowersFilteredError
 }

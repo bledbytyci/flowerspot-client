@@ -14,7 +14,6 @@ export default class Flower {
         if(!flowers) {
             return [];
         }
-        
         return flowers.map(flower => new Flower(flower));
     };
 }

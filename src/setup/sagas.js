@@ -1,6 +1,6 @@
 import AuthSagas from '../auth/authSagas.js';
 import FlowerSagas from '../flower/flowerSaga.js'
-import { fork, all } from 'redux-saga/effects';
+import { all } from 'redux-saga/effects';
 
 const sagas = [
     ...AuthSagas,
@@ -8,5 +8,5 @@ const sagas = [
 ];
 
 export default function* rootSaga() {
-    yield all([...sagas].map(fork));
+    yield all([...sagas]);
 }
