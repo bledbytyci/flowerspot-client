@@ -1,0 +1,26 @@
+.nav-link{
+    font-size: 14px;
+    font-weight: 500;
+    color: #949ea0;
+    padding: 25px 30px !important;
+}
+.nav-link:hover{
+    color: #df9186;
+}
+
+.nav-btn{
+    border-radius: 50px;
+    background-color: #eaa79e;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    color: white;
+}
+
+.nav-login-item{
+    color: #df9186;
+}
+
+.nav-btn:hover{
+    opacity: 0.9;
+    color: #ececec !important;
+}
