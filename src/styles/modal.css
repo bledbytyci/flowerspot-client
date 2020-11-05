@@ -1,0 +1,48 @@
+.modal-bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color:  rgba(0, 0, 0, 0.5);
+	z-index: 1;
+	transition: all .7s ease;
+}
+
+.modal-wrapper {
+	background-color: white;
+	width: 440px;
+	margin: 4rem auto;
+	border-radius: 3px;
+}
+
+.modal-header {
+	border: none!important;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.modal-title-wrapper {
+	flex-grow: 1;
+	text-align: center;
+}
+
+.modal-title {
+	font-family: Ubuntu;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 20px;
+	color: #334144;
+}
+
+.modal-header span {
+	font-size: 1.5rem;
+	cursor: pointer;
+}
+
+.modal-content {
+	border: none!important;
+	padding: 1.5rem 1.5rem;
+}
