@@ -17,7 +17,6 @@ class FlowerList extends Component {
 
 	render() {
 		const { flower } = this.props;
-		console.log(flower)
 		return (
 			<Col lg={3} md={6} sm={12}>
 				<div className="card border-0 flower-card">
