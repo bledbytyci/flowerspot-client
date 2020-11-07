@@ -15,7 +15,6 @@ const authReducer = (state = initialState, action) => {
         case AuthActionConstants.LOG_IN_USER: {
             return state.withMutations(state => {
                 state.set('validationModel', new ValidationModel());
-                state.set('isLoggedIn', true);
             });
         }
 
@@ -27,6 +26,10 @@ const authReducer = (state = initialState, action) => {
         }
 
         case AuthActionConstants.LOG_IN_USER_SUCCESS: {
+            return state.set('isLoggedIn', true);
+        }
+
+        case AuthActionConstants.LOG_OUT_USER_SUCCESS: {
             return state.set('isLoggedIn', false);
         }
         
@@ -44,6 +47,11 @@ const authReducer = (state = initialState, action) => {
 
         case AuthActionConstants.SIGN_UP_USER_ERROR: {
             return state.set('validationModel', action.payload)
+        }
+
+        case AuthActionConstants.CHECK_USER_LOGGED_IN: {
+            const authToken = localStorage.getItem('auth_token');
+            return state.set('isLoggedIn', authToken === null || authToken === '' ? false : true )
         }
         
        default: {

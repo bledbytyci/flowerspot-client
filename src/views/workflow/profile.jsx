@@ -16,7 +16,8 @@ const mapStoreToProps = store => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		getProfile: () => dispatch(AuthActionCreators.getProfile())
+		getProfile: () => dispatch(AuthActionCreators.getProfile()),
+		logOutUser: () => dispatch(AuthActionCreators.logOutUser())
 	}
 }
 
@@ -28,6 +29,7 @@ class Profile extends Component {
 	
 	static get propTypes() {
 		return {
+			logOutUser: PropTypes.func,
 			show: PropTypes.bool,
 			getProfile: PropTypes.func,
 			onHide: PropTypes.func,
@@ -40,8 +42,9 @@ class Profile extends Component {
 	}
 
 	_onSave = () => {
-		localStorage.setItem('auth_token', null);
-		this.props.onHide()
+		const {onHide, logOutUser} = this.props;
+		logOutUser();
+		onHide();
 	}
 
 	render(){

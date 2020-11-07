@@ -21,7 +21,7 @@ const mapStoreToProps = store => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		logInUser: (user) => dispatch(AuthActionCreators.logInUser(user)),
+		logInUser: (user) => dispatch(AuthActionCreators.logInUser(user))
 	}
 }
 
@@ -49,7 +49,7 @@ class LogIn extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if(prevProps.isLoggedIn && !this.props.isLoggedIn) {
+		if(prevProps.isLoggedIn !== this.props.isLoggedIn) {
 			this.setState({showLogInSuccessModal: true})
 		}
 

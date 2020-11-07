@@ -1,14 +1,18 @@
-.nav-link{
+.navbar {
+    margin: 15px 0;
+}
+
+.navbar-link{
     font-size: 14px;
     font-weight: 500;
     color: #949ea0;
-    padding: 25px 30px !important;
+    padding: 0 30px !important;
 }
-.nav-link:hover{
+.navbar-link:hover{
     color: #df9186;
 }
 
-.nav-btn{
+.navbar-btn{
     border-radius: 50px;
     background-color: #eaa79e;
     padding-top: 15px !important;
@@ -16,11 +20,11 @@
     color: white;
 }
 
-.nav-login-item{
+.navbar-login-item{
     color: #df9186;
 }
 
-.nav-btn:hover{
+.navbar-btn:hover{
     opacity: 0.9;
     color: #ececec !important;
 }

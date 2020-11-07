@@ -5,7 +5,6 @@
 	border-radius: 3px;
 	height: 50px;
 	width: 100%;
-	font-family: Ubuntu;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 13px;
@@ -21,7 +20,6 @@
 	left: 15px;
 	top: 11px;
 	margin-left: 15px;
-	font-family: Ubuntu;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 10px;
@@ -30,7 +28,6 @@
 }
 
 .sign-up-success-text {
-	font-family: Ubuntu;
 	font-style: normal;
 	font-weight: 500;
 	font-size: 20px;
@@ -56,7 +53,6 @@
 	border-radius: 3px;
 	height: 50px;
 	border: none;
-	font-family: Ubuntu;
 	font-style: normal;
 	font-weight: 500;
 	font-size: 14px;
@@ -76,7 +72,6 @@
 .profile-text {
 	height: 39px;
 	width: 100%;
-	font-family: Ubuntu;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 13px;
@@ -87,7 +82,6 @@
 
 .profile-label {
 	margin-left: 15px;
-	font-family: Ubuntu;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 10px;
@@ -97,7 +91,6 @@
 
 .profile-header-text {
 	box-sizing: border-box;
-	font-family: Ubuntu;
 	font-style: normal;
 	font-weight: 300;
 	font-size: 25px;
@@ -107,7 +100,6 @@
 }
 
 .profile-header-label {
-	font-family: Ubuntu;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 10px;

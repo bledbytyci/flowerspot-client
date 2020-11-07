@@ -10,6 +10,16 @@ const logInUserSuccess = () => ({
     payload: {}
 });
 
+const logOutUser = () => ({
+    type: AuthActionConstants.LOG_OUT_USER,
+    payload: {}
+});
+
+const logOutUserSuccess = () => ({
+    type: AuthActionConstants.LOG_OUT_USER_SUCCESS,
+    payload: {}
+});
+
 const logInUserError = error => ({
     type: AuthActionConstants.LOG_IN_USER_ERROR,
     payload: error
@@ -45,14 +55,22 @@ const getProfileError = error => ({
     payload: error
 });
 
+const checkUserIsLoggedIn = () => ({
+    type: AuthActionConstants.CHECK_USER_LOGGED_IN,
+    payload: {}
+}) 
+
 export default {
 	logInUser,
 	logInUserSuccess,
-	logInUserError,
+    logInUserError,
+    logOutUser,
+    logOutUserSuccess,
     signUpUser,
     signUpSuccess,
 	signUpUserError,
 	getProfile,
 	getProfileSuccess,
-	getProfileError
+    getProfileError,
+    checkUserIsLoggedIn
 }

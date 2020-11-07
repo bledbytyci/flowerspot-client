@@ -21,6 +21,11 @@ function* doLogIn(action) {
     }
 }
 
+function* doLogOut() {
+    localStorage.setItem('auth_token', '');
+    yield put(AuthActionCreators.logOutUserSuccess());
+}
+
 function* doSignUp(action) {
     const { response, errorResponse } = yield call(AuthApi.signUp, action.payload);
 
@@ -54,5 +59,6 @@ function* doGetProfile() {
 export default [
 	takeLatest(AuthActionConstants.LOG_IN_USER, doLogIn),
 	takeLatest(AuthActionConstants.SIGN_UP_USER, doSignUp),
-	takeLatest(AuthActionConstants.GET_PROFILE, doGetProfile)
+    takeLatest(AuthActionConstants.GET_PROFILE, doGetProfile),
+    takeLatest(AuthActionConstants.LOG_OUT_USER, doLogOut)
 ];
