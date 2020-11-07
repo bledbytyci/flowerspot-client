@@ -1,29 +1,29 @@
 import AuthActionConstants from "./authActionConstants";
 
-const signInUser = (user) => ({
-    type: AuthActionConstants.SIGN_IN_USER,
-    payload: {user}
+const logInUser = (user) => ({
+    type: AuthActionConstants.LOG_IN_USER,
+    payload: user
 });
 
-const signInUserSuccess = authToken => ({
-    type: AuthActionConstants.SIGN_IN_USER_SUCCESS,
-    payload: authToken
+const logInUserSuccess = () => ({
+    type: AuthActionConstants.LOG_IN_USER_SUCCESS,
+    payload: {}
 });
 
-const signInUserError = error => ({
-    type: AuthActionConstants.SIGN_IN_USER_ERROR,
+const logInUserError = error => ({
+    type: AuthActionConstants.LOG_IN_USER_ERROR,
     payload: error
 });
 
 const signUpUser = (user) => ({
     type: AuthActionConstants.SIGN_UP_USER,
-    payload: {user}
+    payload: user
 });
 
-const signUpUserSuccess = authToken => ({
+const signUpSuccess = () => ({
     type: AuthActionConstants.SIGN_UP_USER_SUCCESS,
-    payload: authToken
-});
+    payload: {}
+})
 
 const signUpUserError = error => ({
     type: AuthActionConstants.SIGN_UP_USER_ERROR,
@@ -46,11 +46,11 @@ const getProfileError = error => ({
 });
 
 export default {
-	signInUser,
-	signInUserSuccess,
-	signInUserError,
-	signUpUser,
-	signUpUserSuccess,
+	logInUser,
+	logInUserSuccess,
+	logInUserError,
+    signUpUser,
+    signUpSuccess,
 	signUpUserError,
 	getProfile,
 	getProfileSuccess,

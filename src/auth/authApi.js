@@ -6,7 +6,7 @@ class AuthApi {
         return `${Config.proxyBaseUrl}/users`;
     }
 
-    static signIn(user) {
+    static logIn(user) {
         return Api.postJson(`${AuthApi.baseUrl}/login`, user);
 	}
 	

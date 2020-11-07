@@ -7,21 +7,16 @@ class Modal extends Component {
 		return {
 			title: PropTypes.string,
 			children: PropTypes.any,
-			footer: PropTypes.element,
 			show: PropTypes.bool,
 			onHide: PropTypes.func
 		}
 	}
 
 	render(){
-		const {title, footer, children, show, onHide} = this.props;
-		console.log(show)
+		const {title, children, show, onHide} = this.props;
 		return (
-			<div className="modal-bg" style={{
-				display: show ? 'block' : 'none',
-				transform: show ? 'translateY(0vh)' : 'translateY(-100vh)'
-				}}>
-			<div className="modal-wrapper">
+			<div className="modal-bg" style={{opacity: show ? '1' : '0'}}>
+			<div className="modal-wrapper" style={{transform: show ? 'translateY(0vh)' : 'translateY(-100vh)'}}>
 				<div className="modal-header">
 					<div className="modal-title-wrapper">
 						<p className="modal-title">{title}</p>
@@ -31,9 +26,6 @@ class Modal extends Component {
 				<div className="modal-content">
 					<div className="modal-body">
 						{children}
-					</div>
-					<div >
-						{footer}
 					</div>
 				</div>
 			</div>
