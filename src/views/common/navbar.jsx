@@ -3,9 +3,8 @@ import { Nav, Navbar } from 'react-bootstrap';
 import Logo from '../../logo.svg';
 import '../../styles/navbar.css';
 import LogIn from '../workflow/logIn.jsx';
+import Profile from '../workflow/profile.jsx';
 import SignUp from '../workflow/signUp.jsx';
-
-
 
 class NavigationBar extends Component {
 	constructor(props){
@@ -33,7 +32,7 @@ class NavigationBar extends Component {
 	}
 	
 	render(){
-		const { showSignUpModal, showLogInModal } = this.state;
+		const { showSignUpModal, showLogInModal, showProfileModal } = this.state;
 		return (
 			<>
 			<Navbar className="nav">
@@ -62,6 +61,7 @@ class NavigationBar extends Component {
 			</Navbar>
 			{showSignUpModal && <SignUp show={showSignUpModal} onHide={this._onSignUpHide} />}
 			{showLogInModal && <LogIn show={showLogInModal} onHide={this._onLogInHide} />}
+			{showProfileModal && <Profile show={showProfileModal} onHide={() => {this.setState({showProfileModal: false})}} />}
 			</>
 		)
 	}

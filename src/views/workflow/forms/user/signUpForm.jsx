@@ -89,7 +89,7 @@ class SignUpForm extends Component {
 				</Row>
 				<Row>
 					<Col>
-					<button className="signup-btn" 
+					<button className="form-btn signup-btn" 
 					onClick={(e) => {
 						e.preventDefault()
 						onSave()

@@ -13,7 +13,6 @@
 
 .modal-wrapper {
 	background-color: white;
-	width: 440px;
 	border-radius: 3px;
 	transition: all .7s ease;
 }
@@ -42,9 +41,9 @@
 .modal-header span {
 	font-size: 1.5rem;
 	cursor: pointer;
+	color: #949EA0;
 }
 
 .modal-content {
 	border: none!important;
-	padding: 0 1.5rem;
 }

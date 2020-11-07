@@ -31,17 +31,17 @@ const signUpUserError = error => ({
 });
 
 const getProfile = () => ({
-    type: AuthActionConstants.SIGN_UP_USER,
+    type: AuthActionConstants.GET_PROFILE,
     payload: {}
 });
 
 const getProfileSuccess = user => ({
-    type: AuthActionConstants.SIGN_UP_USER_SUCCESS,
+    type: AuthActionConstants.GET_PROFILE_SUCCESS,
     payload: user
 });
 
 const getProfileError = error => ({
-    type: AuthActionConstants.SIGN_UP_USER_ERROR,
+    type: AuthActionConstants.GET_PROFILE_ERROR,
     payload: error
 });
 

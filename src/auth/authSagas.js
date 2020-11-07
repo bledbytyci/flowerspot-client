@@ -43,7 +43,7 @@ function* doGetProfile() {
 
     if(response) {
         if(response.status === HttpResponseCodes.OK) {
-			yield put(AuthActionCreators.getProfileSuccess(response.data));
+			yield put(AuthActionCreators.getProfileSuccess(response.data.user));
         }
     }
     else if(errorResponse) {
