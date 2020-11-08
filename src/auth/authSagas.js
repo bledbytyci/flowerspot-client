@@ -52,7 +52,7 @@ function* doGetProfile() {
         }
     }
     else if(errorResponse) {
-        yield put(AuthActionCreators.getProfileError(errorResponse));
+        console.log('Following error occurred: ', errorResponse);
     }
 }
 

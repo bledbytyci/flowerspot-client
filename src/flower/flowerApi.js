@@ -6,10 +6,6 @@ class FlowerApi {
         return `${Config.proxyBaseUrl}/flowers`;
     }
 
-    static createFlower(flower) {
-        return Api.postJson(FlowerApi.baseUrl, flower);
-    }
-
     static getFlowersFiltered(filter) {
         return Api.getJson(`${FlowerApi.baseUrl}/search?query=${filter}`);
     }

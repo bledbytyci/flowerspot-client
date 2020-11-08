@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types'
-import { Col, Row } from 'react-bootstrap';
 import React, {Component} from 'react';
+import { Col, Row } from 'react-bootstrap';
 import '../../../../styles/form.css';
-
 
 class SignUpSuccessForm extends Component {
 	static get propTypes() {
@@ -31,7 +30,7 @@ class SignUpSuccessForm extends Component {
 					</Col>
 				</Row>
 			</>
-			)
+		)
 	}
 }
 

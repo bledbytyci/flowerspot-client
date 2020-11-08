@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
+import profilePic from '../../../../img/profile-holder.png';
 import User from '../../../../user/user';
-import { Col, Row } from 'react-bootstrap';
 import React, {Component} from 'react';
+import { Col, Row } from 'react-bootstrap';
 import '../../../../styles/form.css';
-import profilePic from '../../../../profile-holder.png';
 
 const ATTRIBUTES = {
 	FIRST_NAME: 'first_name',
@@ -67,7 +67,7 @@ class ProfileForm extends Component {
 					</Col>
 				</Row>
 			</>
-			)
+		)
 	}
 }
 

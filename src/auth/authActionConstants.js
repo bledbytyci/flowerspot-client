@@ -11,6 +11,5 @@ export default keyMirror({
 	SIGN_UP_USER_ERROR: null,
 	GET_PROFILE: null,
 	GET_PROFILE_SUCCESS: null,
-	GET_PROFILE_ERROR: null,
 	CHECK_USER_LOGGED_IN: null
 });

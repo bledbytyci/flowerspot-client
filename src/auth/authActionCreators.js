@@ -50,11 +50,6 @@ const getProfileSuccess = user => ({
     payload: user
 });
 
-const getProfileError = error => ({
-    type: AuthActionConstants.GET_PROFILE_ERROR,
-    payload: error
-});
-
 const checkUserIsLoggedIn = () => ({
     type: AuthActionConstants.CHECK_USER_LOGGED_IN,
     payload: {}
@@ -71,6 +66,5 @@ export default {
 	signUpUserError,
 	getProfile,
 	getProfileSuccess,
-    getProfileError,
     checkUserIsLoggedIn
 }

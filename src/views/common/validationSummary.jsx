@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import { Alert } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import ValidationModel from '../../setup/validationModel.js';
+import React, { Component } from 'react';
+import { Alert } from 'react-bootstrap';
 import '../../styles/validation.css'
+
 export default class ValidationSummary extends Component {
     static get propTypes() {
         return { 
-            validationModel: PropTypes.instanceOf(ValidationModel),
-            show: PropTypes.bool
+            show: PropTypes.bool,
+            validationModel: PropTypes.instanceOf(ValidationModel)
         };
     }
 	

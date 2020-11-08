@@ -1,13 +1,13 @@
 import AuthActionCreators from '../../auth/authActionCreators.js';
 import AuthSelectors from '../../auth/authSelectors.js';
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
+import Modal from '../common/modal.jsx';
+import ProfileForm from './forms/user/profileForm.jsx';
 import PropTypes from 'prop-types';
 import User from '../../user/user.js';
-import Modal from '../common/modal.jsx';
-import '../../styles/modal.css';
-import ProfileForm from './forms/user/profileForm.jsx';
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import '../../styles/modal.css';
 
 const mapStoreToProps = store => {
 	return {
@@ -29,11 +29,11 @@ export class Profile extends Component {
 	
 	static get propTypes() {
 		return {
-			logOutUser: PropTypes.func,
+			history: PropTypes.object,
 			getProfile: PropTypes.func,
-			user: PropTypes.instanceOf(User),
+			logOutUser: PropTypes.func,
 			match: PropTypes.object,
-			history: PropTypes.object
+			user: PropTypes.instanceOf(User)
 		}
 	}
 

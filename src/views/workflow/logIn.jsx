@@ -1,16 +1,17 @@
 import AuthActionCreators from '../../auth/authActionCreators.js';
 import AuthSelectors from '../../auth/authSelectors.js';
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import '../../styles/modal.css';
-import User from '../../user/user.js';
-import ValidationModel from '../../setup/validationModel.js';
-import Modal from '../common/modal.jsx';
-import ValidationSummary from '../common/validationSummary.jsx';
-import validateLogInForm from './forms/user/logInFormValidation.js';
 import LogInForm from './forms/user/logInForm.jsx';
 import LogInSuccessForm from './forms/user/logInSuccessForm.jsx';
+import Modal from '../common/modal.jsx';
+import PropTypes from 'prop-types';
+import User from '../../user/user.js';
+import ValidationModel from '../../setup/validationModel.js';
+import ValidationSummary from '../common/validationSummary.jsx';
+import validateLogInForm from './forms/user/logInFormValidation.js';
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import '../../styles/modal.css';
+
 import { withRouter } from 'react-router-dom';
 
 const mapStoreToProps = store => {
@@ -38,14 +39,13 @@ export class LogIn extends Component {
 		}
 	}
 
-	
 	static get propTypes() {
 		return {
-			logInUser: PropTypes.func,
+			history: PropTypes.object,
 			isLoggedIn: PropTypes.bool,
-			validationModel: PropTypes.instanceOf(ValidationModel),
+			logInUser: PropTypes.func,
 			match: PropTypes.object,
-			history: PropTypes.object
+			validationModel: PropTypes.instanceOf(ValidationModel)
 		}
 	}
 
@@ -113,7 +113,6 @@ export class LogIn extends Component {
 					<LogInSuccessForm onSave={this._onLogInSuccessSave} onProfileClick={this._onProfileClick} />
 				)}
 			</Modal>
-
 		)
 	}
 }

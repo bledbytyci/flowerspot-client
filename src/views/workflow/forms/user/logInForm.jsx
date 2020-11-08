@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import User from '../../../../user/user';
 import validateLogInForm from './logInFormValidation.js'
-import { Col, Form, Row } from 'react-bootstrap';
 import React, {Component} from 'react';
+import { Col, Form, Row } from 'react-bootstrap';
 import '../../../../styles/form.css';
 
 const ATTRIBUTES = {
@@ -63,7 +63,7 @@ class LogInForm extends Component {
 					</Col>
 				</Row>
 			</Form>
-			)
+		)
 	}
 }
 

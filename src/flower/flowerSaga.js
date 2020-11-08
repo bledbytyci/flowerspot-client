@@ -10,7 +10,7 @@ function* doGetFlowersFiltered(action) {
         yield put(FlowerActionCreators.getFlowersFilteredSuccess(response.data));
     }
     else if(errorResponse) {
-        yield put(FlowerActionCreators.getFlowersFilteredError(errorResponse));
+        console.log('Following error occurred: ', errorResponse);
     }
 }
 
@@ -20,7 +20,7 @@ function* doGetFlowers() {
         yield put(FlowerActionCreators.getFlowersSuccess(response.data));
     }
     else if(errorResponse) {
-        yield put(FlowerActionCreators.getFlowersError(errorResponse));
+        console.log('Following error occurred: ', errorResponse);
     }
 }
 

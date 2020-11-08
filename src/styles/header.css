@@ -1,54 +1,53 @@
 .header {
     padding-top: 10rem;
     padding-bottom: calc(10rem - 56px);
-    background-image: url(/src/flower.png);
+    background-image: url(/src/img/flower.png);
     background-position: center center;
     background-size: cover;
     text-align: center;
     color: #FFFFFF;
 }
-h1{
+
+h1 {
     font-style: normal;
     font-weight: 600;
     font-size: 40px;
     line-height: 40px;
     font-family: Montserrat;
 }
-.text-faded{
+
+.text-faded {
     font-size: 17px;
     opacity: 0.7;
     font-weight: 300;
 }
-#search{
-    height: 60px;
+
+.search-input {
+    border-radius: 3px 0 0 3px!important;
+    border: 1px solid #FFFFFF!important;
+    background-color: #FFFFFF!important;
+    min-height: 60px;
 }
-input{
+
+input {
     color: #949ea0;
     font-size: 18px;
     font-weight: 300;
 }
+
 input:focus,
 button:focus {
     outline: none !important;
     box-shadow: none !important;
 }
-.input-group-append{
-    background-color: white !important;
-    border-radius: .25rem;
+
+.search-btn {
+    border-radius: 0 3px 3px 0!important;
+    border: 1px solid #FFFFFF!important;
+    background-color: #FFFFFF!important;
 }
-.btn-outline-secondary:hover {
-    background-color: white !important;
-}
-.btn-outline-secondary:active, .btn-outline-secondary:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}
-.input-group-append .search-icon{
+
+.search-icon {
     color: #eaa79e;
     font-size: 20px;
 }
-.btn-outline-secondary:not(:disabled):not(.disabled).active, .btn-outline-secondary:not(:disabled):not(.disabled):active, .show>.btn-outline-secondary.dropdown-toggle {
-    color: #fff;
-    background-color: transparent !important;
-}
-

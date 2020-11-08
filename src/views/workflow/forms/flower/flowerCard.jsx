@@ -1,8 +1,8 @@
+import Flower from '../../../../flower/flower';
+import PropTypes from 'prop-types';
+import star from '../../../../img/star.png'
 import React, {Component} from 'react';
 import { Col } from 'react-bootstrap';
-import PropTypes from 'prop-types';
-import Flower from '../../../../flower/flower';
-import star from '../../../../star.png'
 
 export class FlowerCard extends Component {
 	constructor(props){

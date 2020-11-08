@@ -1,19 +1,19 @@
 import AuthActionCreators from '../../auth/authActionCreators';
 import AuthSelectors from '../../auth/authSelectors';
-import React, {Component} from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
-import Logo from '../../logo.svg';
+import Logo from '../../img/logo.svg';
 import PropTypes from 'prop-types';
-import profilePicNav from '../../menu_profile_holder.png';
-import { connect } from 'react-redux';
+import profilePicNav from '../../img/menu_profile_holder.png';
+import React, {Component} from 'react';
 import User from '../../user/user';
-import '../../styles/navbar.css';
+import { Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import '../../styles/navbar.css';
 
 const mapStoreToProps = store => {
 	return {
-		user: AuthSelectors.getUser(store),
-		isLoggedIn: AuthSelectors.isLoggedIn(store)
+		isLoggedIn: AuthSelectors.isLoggedIn(store),
+		user: AuthSelectors.getUser(store)
 	}
 }
 
@@ -31,10 +31,10 @@ class NavigationBar extends Component {
 
 	static get propTypes() {
 		return {
-			user: PropTypes.instanceOf(User),
 			checkUserIsLoggedIn: PropTypes.func,
 			getProfile: PropTypes.func,
-			isLoggedIn: PropTypes.bool
+			isLoggedIn: PropTypes.bool,
+			user: PropTypes.instanceOf(User)
 		}
 	}
 

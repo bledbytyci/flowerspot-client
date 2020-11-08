@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types'
-import User from '../../../../user/user';
-import ReactDatePicker from 'react-datepicker';
-import validateSignUpForm from './signUpFormValidation.js'
 import moment from "moment";
-import { Col, Form, Row } from 'react-bootstrap';
+import PropTypes from 'prop-types'
+import ReactDatePicker from 'react-datepicker';
+import User from '../../../../user/user';
+import validateSignUpForm from './signUpFormValidation.js'
 import React, {Component} from 'react';
+import { Col, Form, Row } from 'react-bootstrap';
 import '../../../../styles/form.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -97,7 +97,7 @@ class SignUpForm extends Component {
 					</Col>
 				</Row>
 			</Form>
-			)
+		)
 	}
 }
 

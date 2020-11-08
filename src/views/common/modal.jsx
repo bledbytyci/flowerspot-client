@@ -5,10 +5,10 @@ import '../../styles/modal.css';
 class Modal extends Component {
 	static get propTypes() {
 		return {
-			title: PropTypes.string,
 			children: PropTypes.any,
-			show: PropTypes.bool,
 			onHide: PropTypes.func,
+			show: PropTypes.bool,
+			title: PropTypes.string,
 			width: PropTypes.number
 		}
 	}

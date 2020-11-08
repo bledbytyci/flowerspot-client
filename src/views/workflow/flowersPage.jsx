@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
+import AuthActionCreators from '../../auth/authActionCreators';
+import AuthSelectors from '../../auth/authSelectors';
 import FlowerActionCreators from '../../flower/flowerActionCreators';
-import FlowerSelectors from '../../flower/flowerSelectors';
-import '../../styles/flower.css';
 import FlowerCard from './forms/flower/flowerCard.jsx';
+import FlowerSelectors from '../../flower/flowerSelectors';
+import Header from '../common/header.jsx';
 import PropTypes from 'prop-types';
+import React, {Component} from 'react';
 import { List } from 'immutable';
 import { Row } from 'react-bootstrap';
-import AuthSelectors from '../../auth/authSelectors';
-import AuthActionCreators from '../../auth/authActionCreators';
-import Header from '../common/header.jsx';
+import { connect } from 'react-redux';
+import '../../styles/flower.css';
 
 const mapStoreToProps = store => {
 	return {

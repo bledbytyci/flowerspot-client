@@ -37,7 +37,6 @@
 	padding-bottom: 1.5rem;
 }
 
-
 .react-datepicker__input-container {
 	position: static!important;
 	width: inherit;
@@ -114,4 +113,3 @@
 .profile-header {
 	margin-bottom: 30px;
 }
-
