@@ -40,11 +40,8 @@ class NavigationBar extends Component {
 	}
 
 	componentDidMount() {
-		const {checkUserIsLoggedIn, getProfile, isLoggedIn} = this.props;
+		const {checkUserIsLoggedIn} = this.props;
 		checkUserIsLoggedIn();
-		if(isLoggedIn) {
-			getProfile();
-		}
 	}
 
 	componentDidUpdate(prevProps) {
