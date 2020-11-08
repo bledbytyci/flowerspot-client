@@ -5,23 +5,19 @@
 
 .flower-card {
 	margin-bottom: 20px;
-	position: absolute;
-	left: 0%;
-	right: 0%;
-	top: 0%;
-	bottom: 0%;
 	background: linear-gradient(180deg, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.7) 89.5%);
 	border-radius: 3px;
 }
 
+.card-img {
+	height: 350px;
+}
+
 .flower-heading {
 	position: absolute;
-	height: 15px;
 	left: 0%;
 	right: 0%;
-	top: 246px;
-	font-family: "Ubuntu";
-	font-style: normal;
+	top: 70.29%;
 	font-weight: normal;
 	font-size: 20px;
 	line-height: 15px;	
@@ -31,18 +27,14 @@
 
 .flower-subheading {
 	position: absolute;
-	height: 12px;
 	left: 0%;
 	right: 0%;
-	top: 268px;
-	font-family: "Ubuntu";
+	top: 76.57%;
 	font-style: italic;
 	font-weight: normal;
 	font-size: 12px;
-	line-height: 12px;
 	text-align: center;
 	color: #FFFFFF;
-	mix-blend-mode: normal;
 	opacity: 0.7;
 }
 
@@ -50,7 +42,7 @@
 	position: absolute;
 	left: 0%;
 	right: 0%;
-	top: 300px;
+	top: 85.71%;
 	text-align: center;
 }
 
@@ -70,16 +62,13 @@
 
 .flower-sightings-text {
 	position: absolute;
-	height: 12px;
 	left: 14.56%;
 	right: 14.56%;
 	top: calc(50% - 12px/2);
-	font-family: Ubuntu;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 12px;
 	line-height: 12px;
-	text-align: center;
 	color: #FFFFFF;
 }
 
@@ -88,10 +77,8 @@
 	height: 30px;
 	border-radius: 50%;
 	position: absolute;
-	left: 82.14%;
-	right: 7.14%;
+	left: 85.14%;
 	top: 5.71%;
-	bottom: 85.71%;
 	border: none;
 	background: #FFFFFF;
 	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
@@ -105,4 +92,56 @@
 .flower-star-img {
 	display: inline-block;
 	vertical-align: middle
+}
+
+.fav-header {
+	font-style: normal;
+	font-weight: 300;
+	font-size: 40px;
+	line-height: 40px;	
+	text-align: center;	
+	color: #949EA0;
+	padding-bottom: 15vh;
+}
+
+@media screen and (max-width: 992px) and (min-width: 441px) {
+	.card-img{
+		height: 290px;
+	}
+
+	.flower-heading{
+		top: 65.42%;
+		font-size: 16px;
+	}
+
+	.flower-subheading {
+		top: 72.07%;
+	}  
+
+	.flower-star{
+		left: 80.14%;
+	}
+}
+
+@media (max-width:440px){
+	.card-img {
+		height: 230px;
+	}
+
+	.flower-heading{
+		top: 62.42%;
+		font-size: 16px;
+	}
+
+	.flower-subheading {
+		top: 69.07%;
+	}
+
+	.flower-sightings-wrapper {
+		top: 82.71%;
+	}
+
+	.flower-star{
+		left: 75.14%;
+	}
 }

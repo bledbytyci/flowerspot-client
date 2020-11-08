@@ -70,7 +70,6 @@ class NavigationBar extends Component {
 	render(){
 		const { isLoggedIn, user, location } = this.props;
 
-		console.log(location.pathname)
 		return (
 			<Navbar className="navbar" collapseOnSelect expand="lg">
 				<Navbar.Brand>

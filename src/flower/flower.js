@@ -15,5 +15,12 @@ export default class Flower {
             return [];
         }
         return flowers.map(flower => new Flower(flower));
-    };
+	};
+	
+	static mapFromFavApiList = favFlowers => {
+        if(!favFlowers) {
+            return [];
+        }
+        return favFlowers.map(favFlower => new Flower(favFlower.flower));
+	};
 }

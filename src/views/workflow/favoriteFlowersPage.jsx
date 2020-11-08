@@ -6,7 +6,7 @@ import FlowerSelectors from '../../flower/flowerSelectors';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import { List } from 'immutable';
-import { Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import '../../styles/flower.css';
 
@@ -31,8 +31,11 @@ export class FavoriteFlowersPage extends Component {
 	}
 
 	componentDidMount() {
-		const { checkUserIsLoggedIn } = this.props;
-		checkUserIsLoggedIn();
+		const { checkUserIsLoggedIn, isLoggedIn, getFavoriteFlowers } = this.props;
+		checkUserIsLoggedIn(); 
+		if(isLoggedIn) {
+			getFavoriteFlowers();
+		}
 	}
 
 	componentDidUpdate(prevProps) {
@@ -63,10 +66,13 @@ export class FavoriteFlowersPage extends Component {
 			<>
 			<div className="container-fluid flower-container">
 				<Row>
-					{flowers.size !== 0 ?
+					<Col lg={12} className="mx-auto">
+						<p className="fav-header">{!isLoggedIn ? 'Please log in to view your favorite flowers': flowers.size === 0 ? 'No flowers found' : 'Favorite Flowers'}</p>
+					</Col>
+					{flowers.size !== 0 &&
 					(flowers.map((flower, key) => (
 						<FlowerCard flower={flower} key={key} isLoggedIn={isLoggedIn} />
-					))) : !isLoggedIn ? ( <p>Please log in to view your favorite flowers.</p> ) : ( <p>No flowers found.</p> )}
+					)))}
 				</Row>
 			</div>
 			</>

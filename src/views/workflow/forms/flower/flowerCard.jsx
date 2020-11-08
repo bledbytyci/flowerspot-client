@@ -12,19 +12,20 @@ export class FlowerCard extends Component {
 	static get propTypes(){
 		return {
 			flower: PropTypes.instanceOf(Flower),
-			isLoggedIn: PropTypes.bool
+			isLoggedIn: PropTypes.bool,
+			onStarClick: PropTypes.func
 		}
 	} 
 
 	render() {
-		const { flower, isLoggedIn } = this.props;
+		const { flower, isLoggedIn, onStarClick } = this.props;
 		return (
 			<Col lg={3} md={4} sm={6} xs={6}>
 				<div className="card border-0 flower-card">
 					<img src={flower.profile_picture} className="card-img" alt="" width={280} height={350} />
 					<div className="card-img-overlay">
 						{isLoggedIn &&
-							<button className={`flower-star ${flower.favorite ? 'flower-star-favorite' : ''}`}>
+							<button className={`flower-star ${flower.favorite ? 'flower-star-favorite' : ''}`} onClick={() => onStarClick(flower.id)}>
 								<img src={star} className="flower-star-img"/>
 							</button>
 						}

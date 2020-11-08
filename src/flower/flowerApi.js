@@ -18,8 +18,8 @@ class FlowerApi {
         return Api.getJson(`${FlowerApi.baseUrl}/favorites`);
     }
 
-    static markFlowerFavorite(flower_id) {
-        return Api.postJson(`${FlowerApi.baseUrl}/${flower_id}/favorites`);
+    static markFlowerFavorite(id) {
+        return Api.postJson(`${FlowerApi.baseUrl}/${id}/favorites`);
     }
 }
 

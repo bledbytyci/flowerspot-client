@@ -51,7 +51,7 @@ export class LogIn extends Component {
 
 	componentDidUpdate(prevProps) {
 		if((prevProps.isLoggedIn !== this.props.isLoggedIn) && this.props.isLoggedIn === true) {
-			this.setState({showLogInSuccessModal: true})
+			this.setState({showLogInSuccessModal: this.state.user.email ? true : false})
 		}
 
 		if(prevProps.validationModel.isValid !== this.props.validationModel.isValid) {

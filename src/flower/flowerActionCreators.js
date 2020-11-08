@@ -10,6 +10,11 @@ const getFlowersSuccess = flowers => ({
     payload: flowers
 });
 
+const getFlowersError = () => ({
+    type: FlowerActionConstants.GET_FLOWERS_ERROR,
+    payload: {}
+});
+
 const getFlowersFiltered = (filter) => ({
     type: FlowerActionConstants.GET_FLOWERS_FILTERED,
     payload: filter
@@ -18,6 +23,11 @@ const getFlowersFiltered = (filter) => ({
 const getFlowersFilteredSuccess = flowers => ({
     type: FlowerActionConstants.GET_FLOWERS_FILTERED_SUCCESS,
     payload: flowers
+});
+
+const getFlowersFilteredError = () => ({
+    type: FlowerActionConstants.GET_FLOWERS_FILTERED_ERROR,
+    payload: {}
 });
 
 const getFavoriteFlowers = () => ({
@@ -30,13 +40,18 @@ const getFavoriteFlowersSuccess = flowers => ({
     payload: flowers
 });
 
-const markFlowerFavorite = flower_id => ({
+const getFavoriteFlowersError = () => ({
+    type: FlowerActionConstants.GET_FAVORITE_FLOWERS_SUCCESS,
+    payload: {}
+});
+
+const markFlowerFavorite = id => ({
     type: FlowerActionConstants.MARK_FLOWER_FAVORITE,
-    payload: flower_id
+    payload: id
 });
 
 const markFlowerFavoriteSuccess = () => ({
-    type: FlowerActionConstants.MARK_FLOWER_FAVORITE,
+    type: FlowerActionConstants.MARK_FLOWER_FAVORITE_SUCCESS,
     payload: {}
 });
 
@@ -47,11 +62,14 @@ const resetFlowers = () => ({
 
 export default {
 	getFlowers,
-	getFlowersSuccess,
+    getFlowersSuccess,
+    getFlowersError,
     getFlowersFiltered,
     getFlowersFilteredSuccess,
+    getFlowersFilteredError,
     getFavoriteFlowers,
     getFavoriteFlowersSuccess,
+    getFavoriteFlowersError,
     markFlowerFavorite,
     markFlowerFavoriteSuccess,
     resetFlowers

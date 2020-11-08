@@ -14,14 +14,16 @@ import '../../styles/flower.css';
 const mapStoreToProps = store => {
 	return {
 		flowers: FlowerSelectors.getFlowers(store),
-		isLoggedIn: AuthSelectors.isLoggedIn(store)
+		isLoggedIn: AuthSelectors.isLoggedIn(store),
+		isMarkedAsFavorite: FlowerSelectors.isMarkedAsFavorite(store)
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		getFlowers: () => dispatch(FlowerActionCreators.getFlowers()),
 		checkUserIsLoggedIn: () => dispatch(AuthActionCreators.checkUserIsLoggedIn()),
+		getFlowers: () => dispatch(FlowerActionCreators.getFlowers()),
+		markFlowerFavorite: flower_id => dispatch(FlowerActionCreators.markFlowerFavorite(flower_id)),
 		resetFlowers: () => dispatch(FlowerActionCreators.resetFlowers())
 	}
 }
@@ -35,6 +37,12 @@ export class FlowersPage extends Component {
 		this.props.getFlowers();
 	}
 
+	componentDidUpdate(prevProps) {
+		if(prevProps.isMarkedAsFavorite && !this.props.isMarkedAsFavorite) {
+			this.props.getFlowers()
+		}
+	}
+
 	componentWillUnmount() {
 		this.props.resetFlowers()
 	}
@@ -45,9 +53,16 @@ export class FlowersPage extends Component {
 			getFlowers: PropTypes.func,
 			flowers: PropTypes.instanceOf(List),
 			isLoggedIn: PropTypes.bool,
+			isMarkedAsFavorite: PropTypes.bool,
+			markFlowerFavorite: PropTypes.bool,
 			resetFlowers: PropTypes.func
 		}
-	} 
+	}
+
+	_onStarClick = (flower_id) => {
+		const { markFlowerFavorite } = this.props;
+		markFlowerFavorite(flower_id);
+	}
 
 	render() {
 		const {flowers, isLoggedIn} = this.props;
@@ -57,7 +72,7 @@ export class FlowersPage extends Component {
 			<div className="container-fluid flower-container">
 				<Row>
 					{flowers.map((flower, key) => (
-						<FlowerCard flower={flower} key={key} isLoggedIn={isLoggedIn} />
+						<FlowerCard flower={flower} key={key} isLoggedIn={isLoggedIn} onStarClick={this._onStarClick} />
 					))}
 				</Row>
 			</div>

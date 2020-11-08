@@ -10,6 +10,7 @@ function* doGetFlowersFiltered(action) {
         yield put(FlowerActionCreators.getFlowersFilteredSuccess(response.data));
     }
     else if(errorResponse) {
+        yield put(FlowerActionCreators.getFlowersFilteredError());
         console.log('Following error occurred: ', errorResponse);
     }
 }
@@ -20,6 +21,7 @@ function* doGetFlowers() {
         yield put(FlowerActionCreators.getFlowersSuccess(response.data));
     }
     else if(errorResponse) {
+        yield put(FlowerActionCreators.getFlowersError());
         console.log('Following error occurred: ', errorResponse);
     }
 }
@@ -31,13 +33,14 @@ function* doGetFavoriteFlowers() {
     }
     else if(errorResponse) {
         console.log('Following error occurred: ', errorResponse);
+        yield put(FlowerActionCreators.getFavoriteFlowersError());
     }
 }
 
-function* doMarkFlowerFavorite() {
-    const { response, errorResponse } = yield call(FlowerApi.markFlowerFavorite);
+function* doMarkFlowerFavorite(action) {
+    const { response, errorResponse } = yield call(FlowerApi.markFlowerFavorite, action.payload);
     if(response && response.status === HttpResponseCodes.OK) {
-        yield put(FlowerActionCreators.markFlowerFavoriteSuccess(response.data));
+        yield put(FlowerActionCreators.markFlowerFavoriteSuccess());
     }
     else if(errorResponse) {
         console.log('Following error occurred: ', errorResponse);
