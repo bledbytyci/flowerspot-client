@@ -3,6 +3,7 @@ import { LogIn } from '../logIn.jsx';
 import { shallow } from 'enzyme';
 import ValidationModel from '../../../setup/validationModel.js';
 import toJson from 'enzyme-to-json';
+import User from '../../../user/user.js';
 
 jest.unmock('../logIn.jsx');
 jest.unmock('../../../user/user.js');
@@ -25,13 +26,18 @@ describe('LogIn component', () => {
 			validationModel: new ValidationModel(),
 			location: {}
 		}
+
+		const state = {
+			user: new User({email: 'lorem@ipsum.com'})
+		}
 		
 		const logInComponent = shallow(<LogIn {...props} />, shallowOptions);
 
 		props.isLoggedIn = true;
 
+		logInComponent.setState(state);
 		logInComponent.setProps(props);
-        const currentState = logInComponent.state();
+		const currentState = logInComponent.state();
 
         expect(currentState.showLogInSuccessModal).toBe(true);
 	});
