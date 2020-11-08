@@ -9,6 +9,7 @@ import { List } from 'immutable';
 import { Row } from 'react-bootstrap';
 import AuthSelectors from '../../auth/authSelectors';
 import AuthActionCreators from '../../auth/authActionCreators';
+import Header from '../common/header.jsx';
 
 const mapStoreToProps = store => {
 	return {
@@ -45,6 +46,8 @@ export class FlowersPage extends Component {
 	render() {
 		const {flowers, isLoggedIn} = this.props;
 		return(
+			<>
+			<Header />
 			<div className="container-fluid flower-container">
 				<Row>
 					{flowers.map((flower, key) => (
@@ -52,6 +55,7 @@ export class FlowersPage extends Component {
 					))}
 				</Row>
 			</div>
+			</>
 		)
 	}
 }

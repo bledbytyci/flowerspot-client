@@ -7,6 +7,7 @@ import User from '../../user/user.js';
 import Modal from '../common/modal.jsx';
 import '../../styles/modal.css';
 import ProfileForm from './forms/user/profileForm.jsx';
+import { withRouter } from 'react-router-dom';
 
 const mapStoreToProps = store => {
 	return {
@@ -25,15 +26,14 @@ export class Profile extends Component {
 	constructor(props){
 		super(props);
 	}
-
 	
 	static get propTypes() {
 		return {
 			logOutUser: PropTypes.func,
-			show: PropTypes.bool,
 			getProfile: PropTypes.func,
-			onHide: PropTypes.func,
-			user: PropTypes.instanceOf(User)
+			user: PropTypes.instanceOf(User),
+			match: PropTypes.object,
+			history: PropTypes.object
 		}
 	}
 
@@ -42,17 +42,17 @@ export class Profile extends Component {
 	}
 
 	_onSave = () => {
-		const {onHide, logOutUser} = this.props;
+		const {history, logOutUser} = this.props;
 		logOutUser();
-		onHide();
+		history.push('/')
 	}
 
 	render(){
-		const {show, onHide, user} = this.props;
+		const { match, user, history } = this.props;
 		const modalProps = {
 			title: '',
-			show,
-			onHide,
+			show: match?.params?.show ? true : false,
+			onHide: () => history.push('/'),
 			width: 600
 		}
 		
@@ -65,4 +65,4 @@ export class Profile extends Component {
 	}
 }
 
-export default connect(mapStoreToProps, mapDispatchToProps)(Profile);
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(Profile));

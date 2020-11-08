@@ -4,10 +4,15 @@
     background-image: url(/src/flower.png);
     background-position: center center;
     background-size: cover;
+    text-align: center;
+    color: #FFFFFF;
 }
 h1{
+    font-style: normal;
+    font-weight: 600;
     font-size: 40px;
-    font-weight: 300;
+    line-height: 40px;
+    font-family: Montserrat;
 }
 .text-faded{
     font-size: 17px;

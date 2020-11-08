@@ -3,6 +3,7 @@
 exports[`snapshots App snapshot 1`] = `
 <Modal
   onHide={[Function]}
+  show={false}
   title="Create an Account"
 >
   <ValidationSummary

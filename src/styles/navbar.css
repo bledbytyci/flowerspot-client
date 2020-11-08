@@ -8,6 +8,11 @@
     color: #949ea0;
     padding: 0 30px !important;
 }
+
+.no-underline {
+    text-decoration: none !important
+}
+
 .navbar-link:hover{
     color: #df9186;
 }

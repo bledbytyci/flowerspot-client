@@ -11,6 +11,7 @@ import ValidationSummary from '../common/validationSummary.jsx';
 import validateLogInForm from './forms/user/logInFormValidation.js';
 import LogInForm from './forms/user/logInForm.jsx';
 import LogInSuccessForm from './forms/user/logInSuccessForm.jsx';
+import { withRouter } from 'react-router-dom';
 
 const mapStoreToProps = store => {
 	return {
@@ -40,11 +41,11 @@ export class LogIn extends Component {
 	
 	static get propTypes() {
 		return {
-			show: PropTypes.bool,
 			logInUser: PropTypes.func,
-			onHide: PropTypes.func,
 			isLoggedIn: PropTypes.bool,
-			validationModel: PropTypes.instanceOf(ValidationModel)
+			validationModel: PropTypes.instanceOf(ValidationModel),
+			match: PropTypes.object,
+			history: PropTypes.object
 		}
 	}
 
@@ -76,30 +77,23 @@ export class LogIn extends Component {
 	}
 
 	_onLogInSuccessSave = () => {
-		this.setState({showLogInSuccessModal: false})
-		this._onHide()
-	}
-
-	_onHide = (showProfileModal = false) => {
-		this.setState({
-			user: new User(),
-			validationModel: new ValidationModel()
-		}, () => this.props.onHide(showProfileModal))
+		const { history } = this.props;
+		this.setState({showLogInSuccessModal: false}, () => history.push('/'));
 	}
 
 	_onProfileClick = () => {
-		this.setState({showLogInSuccessModal: false})
-		this._onHide(true)
+		const { history } = this.props;
+		this.setState({showLogInSuccessModal: false}, () => history.push(`/profile/${true}`));
 	}
 
 	render(){
-		const {show} = this.props;
-		const {user, validationModel, showLogInSuccessModal, showValidationError} = this.state;
+		const { match, history } = this.props;
+		const { user, validationModel, showLogInSuccessModal, showValidationError } = this.state;
 
 		const modalProps = {
 			title: "Welcome Back",
-			show,
-			onHide: () => this._onHide()
+			show: match?.params?.show ? true : false,
+			onHide: () => history.push('/')
 		}
 		
 		const formProps = {
@@ -124,4 +118,4 @@ export class LogIn extends Component {
 	}
 }
 
-export default connect(mapStoreToProps, mapDispatchToProps)(LogIn);
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(LogIn));

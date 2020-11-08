@@ -1,5 +1,5 @@
 import React from 'react';
-import logIn, { LogIn } from '../logIn.jsx';
+import { LogIn } from '../logIn.jsx';
 import { shallow } from 'enzyme';
 import ValidationModel from '../../../setup/validationModel.js';
 import toJson from 'enzyme-to-json';

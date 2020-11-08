@@ -11,6 +11,7 @@ import SignUpForm from './forms/user/signUpForm.jsx';
 import ValidationSummary from '../common/validationSummary.jsx';
 import validateSignUpForm from './forms/user/signUpFormValidation.js';
 import SignUpSuccessForm from './forms/user/signUpSuccessForm.jsx';
+import { withRouter } from 'react-router-dom';
 
 const mapStoreToProps = store => {
 	return {
@@ -40,11 +41,11 @@ export class SignUp extends Component {
 	
 	static get propTypes() {
 		return {
-			show: PropTypes.bool,
 			signUpUser: PropTypes.func,
-			onHide: PropTypes.func,
 			isCreating: PropTypes.bool,
-			validationModel: PropTypes.instanceOf(ValidationModel)
+			validationModel: PropTypes.instanceOf(ValidationModel),
+			match: PropTypes.object,
+			history: PropTypes.object
 		}
 	}
 
@@ -76,25 +77,18 @@ export class SignUp extends Component {
 	}
 
 	_onSignUpSuccessSave = () => {
-		this.setState({showSignUpSuccessModal: false})
-		this._onHide(true)
-	}
-
-	_onHide = (showLogIn = false) => {
-		this.setState({
-			user: new User(),
-			validationModel: new ValidationModel()
-		}, () => this.props.onHide(showLogIn))
+		const { history } = this.props;
+		this.setState({showLogInSuccessModal: false}, () => history.push(`/login/${true}`));
 	}
 
 	render(){
-		const {show} = this.props;
+		const { match, history} = this.props;
 		const {user, validationModel, showSignUpSuccessModal, showValidationError} = this.state;
 
 		const modalProps = {
 			title: "Create an Account",
-			show,
-			onHide: () => this._onHide()
+			show: match?.params?.show ? true : false,
+			onHide: () => history.push('/')
 		}
 		
 		const formProps = {
@@ -119,4 +113,4 @@ export class SignUp extends Component {
 	}
 }
 
-export default connect(mapStoreToProps, mapDispatchToProps)(SignUp);
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(SignUp));
