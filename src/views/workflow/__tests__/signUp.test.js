@@ -16,14 +16,15 @@ const shallowOptions = {
 describe('SignUp component', () => {
     it('component is being rendered', () => {
 
-		const signUpComponent = shallow(<SignUp />);
+		const signUpComponent = shallow(<SignUp location={{}} />);
         expect(signUpComponent).not.toBe(null);
 	});
 
 	it('sets showSignUpSuccessModal to true after creating a new user', () => {
 		const props = {
 			isCreating: true,
-			validationModel: new ValidationModel()
+			validationModel: new ValidationModel(),
+			location: {}
 		}
 		
 		const signUpComponent = shallow(<SignUp {...props} />, shallowOptions);
@@ -39,7 +40,7 @@ describe('SignUp component', () => {
 
 describe('snapshots', () => {
 	it('App snapshot', () => {
-		const signUpComponent = shallow(<SignUp />);
+		const signUpComponent = shallow(<SignUp location={{}} />);
 		expect(toJson(signUpComponent)).toMatchSnapshot();
 	})
 })

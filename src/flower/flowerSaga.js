@@ -24,7 +24,29 @@ function* doGetFlowers() {
     }
 }
 
+function* doGetFavoriteFlowers() {
+    const { response, errorResponse } = yield call(FlowerApi.getFavoriteFlowers);
+    if(response && response.status === HttpResponseCodes.OK) {
+        yield put(FlowerActionCreators.getFavoriteFlowersSuccess(response.data));
+    }
+    else if(errorResponse) {
+        console.log('Following error occurred: ', errorResponse);
+    }
+}
+
+function* doMarkFlowerFavorite() {
+    const { response, errorResponse } = yield call(FlowerApi.markFlowerFavorite);
+    if(response && response.status === HttpResponseCodes.OK) {
+        yield put(FlowerActionCreators.markFlowerFavoriteSuccess(response.data));
+    }
+    else if(errorResponse) {
+        console.log('Following error occurred: ', errorResponse);
+    }
+}
+
 export default [
 	takeLatest(FlowerActionConstants.GET_FLOWERS, doGetFlowers),
-	takeLatest(FlowerActionConstants.GET_FLOWERS_FILTERED, doGetFlowersFiltered)
+	takeLatest(FlowerActionConstants.GET_FLOWERS_FILTERED, doGetFlowersFiltered),
+	takeLatest(FlowerActionConstants.GET_FAVORITE_FLOWERS, doGetFavoriteFlowers),
+	takeLatest(FlowerActionConstants.MARK_FLOWER_FAVORITE, doMarkFlowerFavorite)
 ];

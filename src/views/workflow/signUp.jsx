@@ -42,7 +42,7 @@ export class SignUp extends Component {
 		return {
 			isCreating: PropTypes.bool,
 			history: PropTypes.object,
-			match: PropTypes.object,
+			location: PropTypes.object,
 			signUpUser: PropTypes.func,
 			validationModel: PropTypes.instanceOf(ValidationModel)
 		}
@@ -76,18 +76,24 @@ export class SignUp extends Component {
 	}
 
 	_onSignUpSuccessSave = () => {
-		const { history } = this.props;
-		this.setState({showLogInSuccessModal: false}, () => history.push(`/login/${true}`));
+		const { location, history } = this.props;
+		this.setState({
+			user: new User(),
+			validationModel: new ValidationModel(),
+			showSignUpSuccessModal: false,
+			showValidationError: false}, () => history.push({pathname: location.pathname, search: '?login=true'}))
 	}
 
 	render(){
-		const { match, history} = this.props;
+		const { location, history} = this.props;
 		const {user, validationModel, showSignUpSuccessModal, showValidationError} = this.state;
+
+		const params = new URLSearchParams(location.search);
 
 		const modalProps = {
 			title: "Create an Account",
-			show: match?.params?.show ? true : false,
-			onHide: () => history.push('/')
+			show: params.get('signup') ? true : false,
+			onHide: () => history.push(location.pathname)
 		}
 		
 		const formProps = {
@@ -97,6 +103,7 @@ export class SignUp extends Component {
 		}
 
 		return (
+			params.get('signup') &&
 			<Modal {...modalProps}>
 				{!showSignUpSuccessModal ? (
 				<>

@@ -1,19 +1,23 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Navbar from './common/navbar.jsx';
 import FlowersPage from './workflow/flowersPage.jsx';
+import FavoriteFlowersPage from './workflow/favoriteFlowersPage.jsx';
 import LogIn from './workflow/logIn.jsx';
+import Navbar from './common/navbar.jsx';
 import Profile  from './workflow/profile.jsx';
 import SignUp from './workflow/signUp.jsx';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const AppRouter = () => {
 	return (
 		<Router>
 			<Navbar />
-			<Route path="/" component={FlowersPage} />
-			<Route path="/login/:show"  component={LogIn} />
-			<Route path="/signup/:show" component={SignUp} />
-			<Route path="/profile/:show" component={Profile} />
+			<Switch>
+				<Route exact path="/" component={FlowersPage} />
+				<Route path="/favorites" component={FavoriteFlowersPage} />
+			</Switch>
+			<Route path="/" component={LogIn} />
+			<Route path="/" component={SignUp} />
+			<Route path="/" component={Profile} />
 	  	</Router>
 	)
 }

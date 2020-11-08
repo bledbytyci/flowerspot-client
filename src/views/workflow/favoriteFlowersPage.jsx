@@ -3,7 +3,6 @@ import AuthSelectors from '../../auth/authSelectors';
 import FlowerActionCreators from '../../flower/flowerActionCreators';
 import FlowerCard from './forms/flower/flowerCard.jsx';
 import FlowerSelectors from '../../flower/flowerSelectors';
-import Header from '../common/header.jsx';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import { List } from 'immutable';
@@ -20,19 +19,27 @@ const mapStoreToProps = store => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		getFlowers: () => dispatch(FlowerActionCreators.getFlowers()),
+		getFavoriteFlowers: () => dispatch(FlowerActionCreators.getFavoriteFlowers()),
 		checkUserIsLoggedIn: () => dispatch(AuthActionCreators.checkUserIsLoggedIn()),
 		resetFlowers: () => dispatch(FlowerActionCreators.resetFlowers())
 	}
 }
 
-export class FlowersPage extends Component {
+export class FavoriteFlowersPage extends Component {
 	constructor(props){
 		super(props)
 	}
 
 	componentDidMount() {
-		this.props.getFlowers();
+		const { checkUserIsLoggedIn } = this.props;
+		checkUserIsLoggedIn();
+	}
+
+	componentDidUpdate(prevProps) {
+		if(prevProps.isLoggedIn != this.props.isLoggedIn){
+			const { getFavoriteFlowers } = this.props;
+			getFavoriteFlowers();
+		}
 	}
 
 	componentWillUnmount() {
@@ -42,7 +49,7 @@ export class FlowersPage extends Component {
 	static get propTypes() {
 		return {
 			checkUserIsLoggedIn: PropTypes.func,
-			getFlowers: PropTypes.func,
+			getFavoriteFlowers: PropTypes.func,
 			flowers: PropTypes.instanceOf(List),
 			isLoggedIn: PropTypes.bool,
 			resetFlowers: PropTypes.func
@@ -50,15 +57,16 @@ export class FlowersPage extends Component {
 	} 
 
 	render() {
-		const {flowers, isLoggedIn} = this.props;
+		const { flowers, isLoggedIn } = this.props;
+
 		return(
 			<>
-			<Header />
 			<div className="container-fluid flower-container">
 				<Row>
-					{flowers.map((flower, key) => (
+					{flowers.size !== 0 ?
+					(flowers.map((flower, key) => (
 						<FlowerCard flower={flower} key={key} isLoggedIn={isLoggedIn} />
-					))}
+					))) : !isLoggedIn ? ( <p>Please log in to view your favorite flowers.</p> ) : ( <p>No flowers found.</p> )}
 				</Row>
 			</div>
 			</>
@@ -66,4 +74,4 @@ export class FlowersPage extends Component {
 	}
 }
 
-export default connect(mapStoreToProps, mapDispatchToProps)(FlowersPage);
+export default connect(mapStoreToProps, mapDispatchToProps)(FavoriteFlowersPage);

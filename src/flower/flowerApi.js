@@ -13,6 +13,14 @@ class FlowerApi {
     static getFlowers() {
         return Api.getJson(`${FlowerApi.baseUrl}`);
     }
+
+    static getFavoriteFlowers() {
+        return Api.getJson(`${FlowerApi.baseUrl}/favorites`);
+    }
+
+    static markFlowerFavorite(flower_id) {
+        return Api.postJson(`${FlowerApi.baseUrl}/${flower_id}/favorites`);
+    }
 }
 
 export default FlowerApi

@@ -11,7 +11,8 @@ import '../../styles/modal.css';
 
 const mapStoreToProps = store => {
 	return {
-		user: AuthSelectors.getUser(store)
+		user: AuthSelectors.getUser(store),
+		isLoggedIn: AuthSelectors.isLoggedIn(store)
 	}
 }
 
@@ -30,33 +31,47 @@ export class Profile extends Component {
 	static get propTypes() {
 		return {
 			history: PropTypes.object,
+			isLoggedIn: PropTypes.bool,
 			getProfile: PropTypes.func,
+			location: PropTypes.object,
 			logOutUser: PropTypes.func,
-			match: PropTypes.object,
 			user: PropTypes.instanceOf(User)
 		}
 	}
 
 	componentDidMount() {
-		this.props.getProfile();
+		if(this.props.isLoggedIn){
+			this.props.getProfile();
+		}
+	}
+
+	componentDidUpdate(prevProps) {
+		if((prevProps.isLoggedIn !== this.props.isLoggedIn) && this.props.isLoggedIn === true) {
+			this.props.getProfile();
+		}
 	}
 
 	_onSave = () => {
-		const {history, logOutUser} = this.props;
+		const {history, logOutUser, location} = this.props;
 		logOutUser();
-		history.push('/')
+		history.push(location.pathname)
 	}
 
 	render(){
-		const { match, user, history } = this.props;
+		const { history, location, user } = this.props;
+
+		const params = new URLSearchParams(location.search);
+
+
 		const modalProps = {
 			title: '',
-			show: match?.params?.show ? true : false,
-			onHide: () => history.push('/'),
+			show: params.get('profile') ? true : false,
+			onHide: () => history.push(location.pathname),
 			width: 600
 		}
 		
 		return (
+			params.get('profile') &&
 			<Modal {...modalProps}>
 				<ProfileForm user={user} onSave={this._onSave} />
 			</Modal>

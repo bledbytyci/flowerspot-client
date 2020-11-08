@@ -15,14 +15,15 @@ const shallowOptions = {
 };
 describe('LogIn component', () => {
     it('component is being rendered', () => {
-		const logInComponent = shallow(<LogIn />);
+		const logInComponent = shallow(<LogIn location={{}} />);
         expect(logInComponent).not.toBe(null);
 	});
 
 	it('sets showLogInSuccessModal to true after logging in', () => {
 		const props = {
 			isLoggedIn: false,
-			validationModel: new ValidationModel()
+			validationModel: new ValidationModel(),
+			location: {}
 		}
 		
 		const logInComponent = shallow(<LogIn {...props} />, shallowOptions);
@@ -38,7 +39,7 @@ describe('LogIn component', () => {
 
 describe('snapshots', () => {
 	it('App snapshot', () => {
-		const logInComponent = shallow(<LogIn />);
+		const logInComponent = shallow(<LogIn location={{}} />);
 		expect(toJson(logInComponent)).toMatchSnapshot();
 	})
 })

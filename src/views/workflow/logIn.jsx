@@ -43,14 +43,14 @@ export class LogIn extends Component {
 		return {
 			history: PropTypes.object,
 			isLoggedIn: PropTypes.bool,
+			location: PropTypes.object,
 			logInUser: PropTypes.func,
-			match: PropTypes.object,
 			validationModel: PropTypes.instanceOf(ValidationModel)
 		}
 	}
 
 	componentDidUpdate(prevProps) {
-		if(prevProps.isLoggedIn !== this.props.isLoggedIn) {
+		if((prevProps.isLoggedIn !== this.props.isLoggedIn) && this.props.isLoggedIn === true) {
 			this.setState({showLogInSuccessModal: true})
 		}
 
@@ -77,23 +77,34 @@ export class LogIn extends Component {
 	}
 
 	_onLogInSuccessSave = () => {
-		const { history } = this.props;
-		this.setState({showLogInSuccessModal: false}, () => history.push('/'));
+		const { history, location } = this.props;
+		this.setState({
+			showLogInSuccessModal: false,
+			user: new User(),
+			validationModel: new ValidationModel(),
+			showValidationError: false}, () => history.push(location.pathname));
 	}
 
 	_onProfileClick = () => {
-		const { history } = this.props;
-		this.setState({showLogInSuccessModal: false}, () => history.push(`/profile/${true}`));
+		const { history, location } = this.props;
+		this.setState({
+			showLogInSuccessModal: false,
+			user: new User(),
+			validationModel: new ValidationModel(),
+			showValidationError: false}, () => history.push({pathname: location.pathname, search: '?profile=true'}));
 	}
 
+
 	render(){
-		const { match, history } = this.props;
+		const { history, location } = this.props;
 		const { user, validationModel, showLogInSuccessModal, showValidationError } = this.state;
+
+		const params = new URLSearchParams(location.search);
 
 		const modalProps = {
 			title: "Welcome Back",
-			show: match?.params?.show ? true : false,
-			onHide: () => history.push('/')
+			show: params.get('login') ? true : false,
+			onHide: () => history.push(location.pathname)
 		}
 		
 		const formProps = {
@@ -102,7 +113,8 @@ export class LogIn extends Component {
 			onSave: this._onSave
 		}
 
-		return (
+		return ( 
+			params.get('login') &&
 			<Modal {...modalProps}>
 				{!showLogInSuccessModal ? (
 				<>

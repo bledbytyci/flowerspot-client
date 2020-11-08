@@ -11,7 +11,9 @@ describe('Profile component', () => {
     it('component is being rendered', () => {
 		const props = {
 			user: new User(),
-			getProfile: jest.fn()
+			getProfile: jest.fn(),
+			isLoggedIn: true, 
+			location: {}
 		}
 		const profileComponent = shallow(<Profile {...props} />);
         expect(profileComponent).not.toBe(null);
@@ -23,7 +25,8 @@ describe('snapshots', () => {
 	it('App snapshot', () => {
 		const props = {
 			user: new User(),
-			getProfile: jest.fn()
+			getProfile: jest.fn(),
+			location: {}
 		}
 		const profileComponent = shallow(<Profile {...props} />);
 		expect(toJson(profileComponent)).toMatchSnapshot();
