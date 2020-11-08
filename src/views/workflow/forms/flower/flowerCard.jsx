@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Flower from '../../../../flower/flower';
 import star from '../../../../star.png'
 
-class FlowerList extends Component {
+export class FlowerCard extends Component {
 	constructor(props){
 		super(props)
 	}
@@ -40,4 +40,4 @@ class FlowerList extends Component {
 	}
 }
 
-export default FlowerList;
+export default FlowerCard;

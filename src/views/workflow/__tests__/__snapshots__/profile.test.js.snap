@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshots App snapshot 1`] = `
+<Modal
+  title=""
+  width={600}
+>
+  <ProfileForm
+    onSave={[Function]}
+    user={
+      User {
+        "date_of_birth": null,
+        "email": "",
+        "first_name": "",
+        "id": "",
+        "last_name": "",
+        "password": "",
+      }
+    }
+  />
+</Modal>
+`;

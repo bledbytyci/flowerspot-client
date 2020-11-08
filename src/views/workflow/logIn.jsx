@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-class LogIn extends Component {
+export class LogIn extends Component {
 	constructor(props){
 		super(props);
 

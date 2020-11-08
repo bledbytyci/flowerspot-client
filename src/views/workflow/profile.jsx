@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-class Profile extends Component {
+export class Profile extends Component {
 	constructor(props){
 		super(props);
 	}

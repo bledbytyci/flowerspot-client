@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-class FlowersPage extends Component {
+export class FlowersPage extends Component {
 	constructor(props){
 		super(props)
 	}
