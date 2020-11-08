@@ -7,16 +7,20 @@ import FlowerCard from './forms/flower/flowerCard.jsx';
 import PropTypes from 'prop-types';
 import { List } from 'immutable';
 import { Row } from 'react-bootstrap';
+import AuthSelectors from '../../auth/authSelectors';
+import AuthActionCreators from '../../auth/authActionCreators';
 
 const mapStoreToProps = store => {
 	return {
-		flowers: FlowerSelectors.getFlowers(store)
+		flowers: FlowerSelectors.getFlowers(store),
+		isLoggedIn: AuthSelectors.isLoggedIn(store)
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		getFlowers: () => dispatch(FlowerActionCreators.getFlowers())
+		getFlowers: () => dispatch(FlowerActionCreators.getFlowers()),
+		checkUserIsLoggedIn: () => dispatch(AuthActionCreators.checkUserIsLoggedIn())
 	}
 }
 
@@ -31,18 +35,20 @@ class FlowersPage extends Component {
 
 	static get propTypes() {
 		return {
+			checkUserIsLoggedIn: PropTypes.func,
 			getFlowers: PropTypes.func,
-			flowers: PropTypes.instanceOf(List)
+			flowers: PropTypes.instanceOf(List),
+			isLoggedIn: PropTypes.bool
 		}
 	} 
 
 	render() {
-		const {flowers} = this.props;
+		const {flowers, isLoggedIn} = this.props;
 		return(
 			<div className="container-fluid flower-container">
 				<Row>
 					{flowers.map((flower, key) => (
-						<FlowerCard flower={flower} key={key}/>
+						<FlowerCard flower={flower} key={key} isLoggedIn={isLoggedIn} />
 					))}
 				</Row>
 			</div>

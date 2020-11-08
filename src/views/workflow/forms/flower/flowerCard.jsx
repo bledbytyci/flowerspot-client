@@ -11,20 +11,23 @@ class FlowerList extends Component {
 
 	static get propTypes(){
 		return {
-			flower: PropTypes.instanceOf(Flower)
+			flower: PropTypes.instanceOf(Flower),
+			isLoggedIn: PropTypes.bool
 		}
 	} 
 
 	render() {
-		const { flower } = this.props;
+		const { flower, isLoggedIn } = this.props;
 		return (
-			<Col lg={3} md={6} sm={12}>
+			<Col lg={3} md={4} sm={6} xs={6}>
 				<div className="card border-0 flower-card">
 					<img src={flower.profile_picture} className="card-img" alt="" width={280} height={350} />
 					<div className="card-img-overlay">
-						<button className={`flower-star ${flower.favorite ? 'flower-star-favorite' : ''}`}>
-							<img src={star} className="flower-star-img"/>
-						</button>
+						{isLoggedIn &&
+							<button className={`flower-star ${flower.favorite ? 'flower-star-favorite' : ''}`}>
+								<img src={star} className="flower-star-img"/>
+							</button>
+						}
 						<p className="font-weight-bold p-2 flower-heading">{flower.name}</p>
 						<p className="font-weight-bold p-2 flower-subheading">{flower.latin_name}</p>
 						<div className="flower-sightings-wrapper">
