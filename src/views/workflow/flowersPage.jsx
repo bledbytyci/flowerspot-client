@@ -54,7 +54,7 @@ export class FlowersPage extends Component {
 			flowers: PropTypes.instanceOf(List),
 			isLoggedIn: PropTypes.bool,
 			isMarkedAsFavorite: PropTypes.bool,
-			markFlowerFavorite: PropTypes.bool,
+			markFlowerFavorite: PropTypes.func,
 			resetFlowers: PropTypes.func
 		}
 	}
