@@ -13,6 +13,14 @@ class AuthApi {
 	static signUp(user) {
         return Api.postJson(`${AuthApi.baseUrl}/register`, user);
     }
+
+    static editProfile(user) {
+        return Api.putJson(`${AuthApi.baseUrl}/${user.id}`, user);
+    }
+
+    static deleteProfile(id) {
+        return Api.deleteJson(`${AuthApi.baseUrl}/${id}`);
+    }
 	
     static getProfile() {
         return Api.getJson(`${AuthApi.baseUrl}/me`);

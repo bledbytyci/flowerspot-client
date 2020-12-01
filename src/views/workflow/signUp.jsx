@@ -54,7 +54,7 @@ export class SignUp extends Component {
 		}
 
 		if(prevProps.validationModel.isValid !== this.props.validationModel.isValid) {
-			this.setState({validationModel: this.props.validationModel})
+			this.setState({validationModel: this.props.validationModel, showValidationError: true})
 		}
 	}
 

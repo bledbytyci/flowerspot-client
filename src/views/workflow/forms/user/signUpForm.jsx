@@ -5,6 +5,7 @@ import User from '../../../../user/user';
 import validateSignUpForm from './signUpFormValidation.js'
 import React, {Component} from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
+import profilePic from '../../../../img/profile-holder.png';
 import '../../../../styles/form.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -21,23 +22,38 @@ class SignUpForm extends Component {
 		return {
 			user: PropTypes.instanceOf(User),
 			onPropertyChange: PropTypes.func,
-			onSave: PropTypes.func
+			onSave: PropTypes.func,
+			onLogout: PropTypes.func,
+			onEditProfile: PropTypes.func,
+			onDelete: PropTypes.func,
+			isEditingProfile: PropTypes.bool
 		}
 	}
 
 	_onPropertyChange = (propertyName, propertyValue) => {
-		const { user, onPropertyChange } = this.props;
+		const { user, onPropertyChange, isEditingProfile } = this.props;
 		const newUser = Object.assign(Object.create(Object.getPrototypeOf(user)), user);
 		newUser[propertyName] = propertyValue;
-		const validationModel = validateSignUpForm(newUser)
+		const validationModel = validateSignUpForm(newUser, !isEditingProfile)
 		onPropertyChange(newUser, validationModel);
 	};
 
 	render(){
-		const { user, onSave } = this.props;
+		const { user, onSave, onDelete, onEditProfile, onLogout, isEditingProfile } = this.props;
 
 		return (
 			<Form horizontal="true">
+				{isEditingProfile && 
+				<Row className="profile-header">
+					<Col lg={3}>
+						<img src={profilePic} width={80} height={80} className="profile-img" />
+					</Col>
+					<Col className="my-auto">
+						<span className="profile-header-tex d-block">{`${user[ATTRIBUTES.FIRST_NAME]} ${user[ATTRIBUTES.LAST_NAME]}`}</span>
+						<label className="profile-header-label">47 sightnings</label>
+					</Col>
+				</Row>
+				}
 				<Row>
 					<Col lg={6}>
 					<label className="label">First Name</label>
@@ -73,29 +89,58 @@ class SignUpForm extends Component {
 							onChange={e => this._onPropertyChange([ATTRIBUTES.EMAIL], e.target.value)}
 							value={user[ATTRIBUTES.EMAIL]}
 							className="input"
+							readOnly={isEditingProfile}
 						/>
 					</Col>
 				</Row>
+				{!isEditingProfile &&
+					<Row>
+						<Col>
+						<label className="label">Password</label>
+							<input
+								onChange={e => this._onPropertyChange([ATTRIBUTES.PASSWORD], e.target.value)}
+								value={user[ATTRIBUTES.PASSWORD]}
+								className="input"
+								type="password"
+							/>
+						</Col>
+					</Row>
+				}
 				<Row>
+				{!isEditingProfile ? 
 					<Col>
-					<label className="label">Password</label>
-						<input
-							onChange={e => this._onPropertyChange([ATTRIBUTES.PASSWORD], e.target.value)}
-							value={user[ATTRIBUTES.PASSWORD]}
-							className="input"
-							type="password"
-						/>
+						<button className="form-btn signup-btn" 
+						onClick={(e) => {
+							e.preventDefault()
+							onSave()
+							}}>Create Account</button>
 					</Col>
-				</Row>
-				<Row>
+					:
+					<>
 					<Col>
-					<button className="form-btn signup-btn" 
-					onClick={(e) => {
-						e.preventDefault()
-						onSave()
-						}}>Create Account</button>
+						<button className="form-btn signup-btn" 
+						onClick={(e) => {
+							e.preventDefault()
+							onEditProfile()
+							}}>Update Account</button>
 					</Col>
-				</Row>
+					<Col>
+						<button className="form-btn signup-btn" 
+						onClick={(e) => {
+							e.preventDefault()
+							onDelete()
+							}}>Delete Account</button>
+					</Col>
+					<Col>
+						<button className="form-btn signup-btn" 
+						onClick={(e) => {
+							e.preventDefault()
+							onLogout()
+							}}>Logout</button>
+					</Col>
+					</>
+				}
+				</Row> 
 			</Form>
 		)
 	}

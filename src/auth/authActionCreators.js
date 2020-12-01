@@ -30,9 +30,9 @@ const signUpUser = (user) => ({
     payload: user
 });
 
-const signUpSuccess = () => ({
+const signUpSuccess = (user) => ({
     type: AuthActionConstants.SIGN_UP_USER_SUCCESS,
-    payload: {}
+    payload: user
 })
 
 const signUpUserError = error => ({
@@ -55,6 +55,36 @@ const checkUserIsLoggedIn = () => ({
     payload: {}
 }) 
 
+const editProfile = (user) => ({
+    type: AuthActionConstants.EDIT_PROFILE,
+    payload: user
+});
+
+const editProfileSuccess = (user) => ({
+    type: AuthActionConstants.EDIT_PROFILE_SUCCESS,
+    payload: user
+})
+
+const editProfileError = error => ({
+    type: AuthActionConstants.EDIT_PROFILE_ERROR,
+    payload: error
+});
+
+const deleteProfile = (id) => ({
+    type: AuthActionConstants.DELETE_PROFILE,
+    payload: id
+});
+
+const deleteProfileSuccess = (user) => ({
+    type: AuthActionConstants.DELETE_PROFILE_ERROR,
+    payload: user
+})
+
+const deleteProfileError = error => ({
+    type: AuthActionConstants.DELETE_PROFILE_ERROR,
+    payload: error
+});
+
 export default {
 	logInUser,
 	logInUserSuccess,
@@ -66,5 +96,11 @@ export default {
 	signUpUserError,
 	getProfile,
 	getProfileSuccess,
-    checkUserIsLoggedIn
+    checkUserIsLoggedIn,
+    editProfile,
+    editProfileSuccess,
+    editProfileError,
+    deleteProfile,
+    deleteProfileError,
+    deleteProfileSuccess
 }

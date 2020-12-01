@@ -10,14 +10,22 @@ class Api {
         return this._do(HttpVerbs.POST, url, data);
     }
 
+    static putJson(url, data) {
+        return this._do(HttpVerbs.PUT, url, data);
+    }
+
+    static deleteJson(url, data) {
+        return this._do(HttpVerbs.DELETE, url, data);
+    }
+
     static _do(verb, url, data) {
 		const authToken = localStorage.getItem('auth_token')
-        const authorization = authToken ? `Basic ${authToken}` : null;
+        const authorization = authToken ? `Bearer ${authToken}` : null;
 
 
         const headersToSend = {
             'Content-Type': 'application/json',
-            'Accept-Language': 'en_GB',
+            'Accept': 'application/json'
         };
 
         if(authorization) {
@@ -28,7 +36,8 @@ class Api {
             method: verb,
             url: url,
             data: data,
-            headers: headersToSend
+            headers: headersToSend,
+            withCredentials: true
         })
             .then(response => ({ response }))
             .catch(errorResponse => ({ errorResponse }));

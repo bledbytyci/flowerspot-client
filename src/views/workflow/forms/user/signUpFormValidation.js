@@ -26,7 +26,7 @@ const validateEmail = (email) => {
         return regex.test(email);
 }
 
-const validateSignUpForm = (user) => {
+const validateSignUpForm = (user, includePassword = true) => {
     const validationModel = new ValidationModel();
 
         if(isNullOrWhitespace(user[ATTRIBUTES.FIRST_NAME])) {
@@ -38,25 +38,27 @@ const validateSignUpForm = (user) => {
                 validationModel.validationMessages = validationModel.validationMessages.push('Last name is required');
                 validationModel.isValid = false;
 	}
-
-        if(isNullOrWhitespace(user[ATTRIBUTES.EMAIL])) {
-                validationModel.validationMessages = validationModel.validationMessages.push('Email address is required');
-                validationModel.isValid = false;
-	}
+        if(includePassword) {
+                if(isNullOrWhitespace(user[ATTRIBUTES.EMAIL])) {
+                        validationModel.validationMessages = validationModel.validationMessages.push('Email address is required');
+                        validationModel.isValid = false;
+                }
+        }
 
         if(isNullOrWhitespace(user[ATTRIBUTES.DATE_OF_BIRTH])) {
                 validationModel.validationMessages = validationModel.validationMessages.push('Date of birth is required');
                 validationModel.isValid = false;
 	}
+        if(includePassword){
+                if(isNullOrWhitespace(user[ATTRIBUTES.PASSWORD])) {
+                        validationModel.validationMessages = validationModel.validationMessages.push('Passwrod is required');
+                        validationModel.isValid = false;
+                }
 
-        if(isNullOrWhitespace(user[ATTRIBUTES.PASSWORD])) {
-                validationModel.validationMessages = validationModel.validationMessages.push('Passwrod is required');
-                validationModel.isValid = false;
-	}
-
-        if(isNullOrWhitespace(user[ATTRIBUTES.PASSWORD], 6)) {
-                validationModel.validationMessages = validationModel.validationMessages.push('Password is too short (minimum is 6 characters)');
-                validationModel.isValid = false;
+                if(isNullOrWhitespace(user[ATTRIBUTES.PASSWORD], 6)) {
+                        validationModel.validationMessages = validationModel.validationMessages.push('Password is too short (minimum is 6 characters)');
+                        validationModel.isValid = false;
+                }
         }
 
         if(!validateEmail(user[ATTRIBUTES.EMAIL])) {
