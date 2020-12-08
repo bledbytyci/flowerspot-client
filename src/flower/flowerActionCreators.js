@@ -1,5 +1,50 @@
 import FlowerActionConstants from './flowerActionConstants';
 
+const createFlower = flower => ({
+    type: FlowerActionConstants.CREATE_FLOWER,
+    payload: flower
+});
+
+const createFlowerSuccess = flower => ({
+    type: FlowerActionConstants.CREATE_FLOWER_SUCCESS,
+    payload: flower
+});
+
+const createFlowerError = error => ({
+    type: FlowerActionConstants.CREATE_FLOWER_ERROR,
+    payload: error
+});
+
+const updateFlower = flower => ({
+    type: FlowerActionConstants.UPDATE_FLOWER,
+    payload: flower
+});
+
+const updateFlowerSuccess = flower => ({
+    type: FlowerActionConstants.UPDATE_FLOWER_SUCCESS,
+    payload: flower
+});
+
+const updateFlowerError = error => ({
+    type: FlowerActionConstants.UPDATE_FLOWER_ERROR,
+    payload: error
+});
+
+const getFlowerById = id => ({
+    type: FlowerActionConstants.GET_FLOWER_BY_ID,
+    payload: id
+});
+
+const getFlowerByIdSuccess = flower => ({
+    type: FlowerActionConstants.GET_FLOWER_BY_ID_SUCCESS,
+    payload: flower
+});
+
+const getFlowerByIdError = () => ({
+    type: FlowerActionConstants.GET_FLOWER_BY_ID_ERROR,
+    payload: {}
+});
+
 const getFlowers = () => ({
     type: FlowerActionConstants.GET_FLOWERS,
     payload: {}
@@ -61,6 +106,15 @@ const resetFlowers = () => ({
 });
 
 export default {
+    createFlower,
+    createFlowerSuccess,
+    createFlowerError,
+    updateFlower,
+    updateFlowerError,
+    updateFlowerSuccess,
+    getFlowerById,
+    getFlowerByIdSuccess,
+    getFlowerByIdError,
 	getFlowers,
     getFlowersSuccess,
     getFlowersError,

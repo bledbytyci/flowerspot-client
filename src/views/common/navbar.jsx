@@ -77,6 +77,13 @@ class NavigationBar extends Component {
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" className="border-0" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="ml-auto d-flex align-items-center">
+								{isLoggedIn && 
+								<Nav.Item>
+									<Link to={{pathname: location.pathname, search: '?create=true'}} className="no-underline">
+											<span className="navbar-link navbar-login-item">Post new Flower</span>
+									</Link>
+								</Nav.Item>						
+								}
 								<Nav.Item>
 										<span className="navbar-link">Flowers</span>
 								</Nav.Item>

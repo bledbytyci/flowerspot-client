@@ -1,3 +1,4 @@
+import AddFlower  from './workflow/addFlower.jsx';
 import FlowersPage from './workflow/flowersPage.jsx';
 import FavoriteFlowersPage from './workflow/favoriteFlowersPage.jsx';
 import LogIn from './workflow/logIn.jsx';
@@ -18,6 +19,7 @@ const AppRouter = () => {
 			<Route path="/" component={LogIn} />
 			<Route path="/" component={SignUp} />
 			<Route path="/" component={Profile} />
+			<Route path="/" component={AddFlower} />
 	  	</Router>
 	)
 }

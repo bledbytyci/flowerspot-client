@@ -1,6 +1,15 @@
 import keyMirror from 'keymirror';
 
 export default keyMirror({
+	CREATE_FLOWER: null,
+	CREATE_FLOWER_SUCCESS: null,
+	CREATE_FLOWER_ERROR: null,
+	UPDATE_FLOWER: null,
+	UPDATE_FLOWER_SUCCESS: null,
+	UPDATE_FLOWER_ERROR: null,
+	GET_FLOWER_BY_ID: null,
+	GET_FLOWER_BY_ID_SUCCESS: null,
+	GET_FLOWER_BY_ID_ERROR: null,
 	GET_FLOWERS: null,
 	GET_FLOWERS_SUCCESS: null,
 	GET_FLOWERS_ERROR: null,

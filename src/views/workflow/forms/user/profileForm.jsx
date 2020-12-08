@@ -19,6 +19,7 @@ class ProfileForm extends Component {
 			onSave: PropTypes.func
 		}
 	}
+	
 	render(){
 		const { user, onSave } = this.props;
 

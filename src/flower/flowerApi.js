@@ -6,6 +6,18 @@ class FlowerApi {
         return `${Config.proxyBaseUrl}/flowers`;
     }
 
+    static createFlower(flower) {
+        return Api.postJson(`${FlowerApi.baseUrl}`, flower);
+    }
+
+    static updateFlower(flower) {
+        return Api.putJson(`${FlowerApi.baseUrl}/${flower.id}`, flower);
+    }
+
+    static getFlowerById(id) {
+        return Api.getJson(`${FlowerApi.baseUrl}/${id}`);
+    }
+    
     static getFlowersFiltered(filter) {
         return Api.getJson(`${FlowerApi.baseUrl}/search?query=${filter}`);
     }
