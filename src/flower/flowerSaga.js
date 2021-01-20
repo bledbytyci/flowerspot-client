@@ -21,6 +21,7 @@ function* doCreateFlower(action) {
 }
 
 function* doUpdateFlower(action) {
+    console.log(action.payload)
     const { response, errorResponse } = yield call(FlowerApi.updateFlower, action.payload);
     if(response && response.status === HttpResponseCodes.OK) {
         yield put(FlowerActionCreators.updateFlowerSuccess(response.data));
@@ -35,10 +36,21 @@ function* doUpdateFlower(action) {
     }
 }
 
+function* doSetSightnings(action) {
+    const { response, errorResponse } = yield call(FlowerApi.setSightings, action.payload);
+    if(response && response.status === HttpResponseCodes.OK) {
+        yield put(FlowerActionCreators.setSightingsSuccess(response.data));
+    }
+    else if(errorResponse) {
+        yield put(FlowerActionCreators.setSightingsError());
+        console.log('Following error occurred: ', errorResponse);
+    }
+}
+
 function* doGetFlowerById(action) {
     const { response, errorResponse } = yield call(FlowerApi.getFlowerById, action.payload);
     if(response && response.status === HttpResponseCodes.OK) {
-        yield put(FlowerActionCreators.getFlowerByIdSuccess(response.data));
+        yield put(FlowerActionCreators.getFlowerByIdSuccess(response.data.flower));
     }
     else if(errorResponse) {
         yield put(FlowerActionCreators.getFlowerByIdError());
@@ -68,8 +80,21 @@ function* doGetFlowers() {
     }
 }
 
+
+function* doGetRandomFlowers() {
+    const { response, errorResponse } = yield call(FlowerApi.getRandomFlowers);
+    if(response && response.status === HttpResponseCodes.OK) {
+        yield put(FlowerActionCreators.getRandomFlowersSuccess(response.data));
+    }
+    else if(errorResponse) {
+        yield put(FlowerActionCreators.getRandomFlowersError());
+        console.log('Following error occurred: ', errorResponse);
+    }
+}
+
 function* doGetFavoriteFlowers() {
     const { response, errorResponse } = yield call(FlowerApi.getFavoriteFlowers);
+    console.log(response)
     if(response && response.status === HttpResponseCodes.OK) {
         yield put(FlowerActionCreators.getFavoriteFlowersSuccess(response.data));
     }
@@ -89,6 +114,19 @@ function* doMarkFlowerFavorite(action) {
     }
 }
 
+function* doDeleteFlower(action) {
+    const { response, errorResponse } = yield call(FlowerApi.deleteFlower, action.payload);
+    if(response) {
+        if(response.status === HttpResponseCodes.OK) {
+            yield put(FlowerActionCreators.deleteFlowerSuccess());
+        }
+    }
+    else if(errorResponse) {
+        console.log(errorResponse)
+        yield put(FlowerActionCreators.deleteFlowerError());
+    }
+}
+
 export default [
 	takeLatest(FlowerActionConstants.GET_FLOWERS, doGetFlowers),
 	takeLatest(FlowerActionConstants.GET_FLOWERS_FILTERED, doGetFlowersFiltered),
@@ -96,5 +134,8 @@ export default [
     takeLatest(FlowerActionConstants.GET_FLOWER_BY_ID, doGetFlowerById),
     takeLatest(FlowerActionConstants.CREATE_FLOWER, doCreateFlower),
     takeLatest(FlowerActionConstants.UPDATE_FLOWER, doUpdateFlower),
-    takeLatest(FlowerActionConstants.MARK_FLOWER_FAVORITE, doMarkFlowerFavorite)
+    takeLatest(FlowerActionConstants.MARK_FLOWER_FAVORITE, doMarkFlowerFavorite),
+    takeLatest(FlowerActionConstants.GET_RANDOM_FLOWERS, doGetRandomFlowers),
+    takeLatest(FlowerActionConstants.SET_SIGHTNINGS, doSetSightnings),
+    takeLatest(FlowerActionConstants.DELETE_FLOWER, doDeleteFlower)
 ];

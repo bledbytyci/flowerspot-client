@@ -25,6 +25,10 @@ class AuthApi {
     static getProfile() {
         return Api.getJson(`${AuthApi.baseUrl}/me`);
     }
+
+    static getProfileById(id) {
+        return Api.getJson(`${AuthApi.baseUrl}/${id}`);
+    }
 }
 
 export default AuthApi;

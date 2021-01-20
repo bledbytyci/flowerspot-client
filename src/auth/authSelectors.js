@@ -7,7 +7,9 @@ const authSelectors = {
     isLoggedIn: store => getAuth(store).get('isLoggedIn'),
     isLoading: store => getAuth(store).get('isLoading'),
     isUpdating: store => getAuth(store).get('isUpdating'),
-    isRemoving: store => getAuth(store).get('isRemoving')
+    isRemoving: store => getAuth(store).get('isRemoving'),
+    isLoadingUserProfile: store => getAuth(store).get('isLoadingUserProfile'),
+    geetUserProfile: store => getAuth(store).get('userProfile')
 };
 
 export default authSelectors;

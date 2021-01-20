@@ -16,6 +16,7 @@ const mapStoreToProps = store => {
 	return {
 		flower: FlowerSelectors.getFlower(store),
 		isCreating: FlowerSelectors.isCreating(store),
+		isLoading: FlowerSelectors.isLoading(store),
 		validationModel: FlowerSelectors.getValidationModel(store)
 	}
 }
@@ -23,7 +24,9 @@ const mapStoreToProps = store => {
 const mapDispatchToProps = dispatch => {
 	return {
 		createFlower: (flower) => dispatch(FlowerActionCreators.createFlower(flower)),
-		getFlowers: () => dispatch(FlowerActionCreators.getFlowers())
+		getFlowers: () => dispatch(FlowerActionCreators.getFlowers()),
+		getFlowerById: id => dispatch(FlowerActionCreators.getFlowerById(id)),
+		updateFlower: flower => dispatch(FlowerActionCreators.updateFlower(flower))
 	}
 }
 
@@ -44,14 +47,31 @@ export class AddFlower extends Component {
 			isLoggedIn: PropTypes.bool,
 			isCreating: PropTypes.bool,
 			getFlowers: PropTypes.func,
+			getFlowerById: PropTypes.func,
 			location: PropTypes.object,
 			createFlower: PropTypes.func,
-			validationModel: PropTypes.instanceOf(ValidationModel)
+			validationModel: PropTypes.instanceOf(ValidationModel),
+			flower: PropTypes.instanceOf(Flower),
+			isLoading: PropTypes.bool,
+			updateFlower: PropTypes.func,
+			match: PropTypes.object
+		}
+	}
+
+	componentDidMount() {
+		const {getFlowerById, match} = this.props;
+		console.log(match.params)
+		if(match.params.id) {
+			getFlowerById(match.params.id);
 		}
 	}
 
 	componentDidUpdate(prevProps) {
 		const {validationModel, isCreating, location, history, getFlowers} = this.props;
+
+		if(prevProps.isLoading && !this.props.isLoading) {
+			this.setState({flower: this.props.flower})
+		}
 
 		if(prevProps.validationModel.isValid !== validationModel.isValid) {
 			this.setState({validationModel: validationModel, showValidationError: true})
@@ -60,8 +80,8 @@ export class AddFlower extends Component {
 		if(prevProps.isCreating && !isCreating){
 			history.push(location.pathname);
 			getFlowers();
+			this._resetFlower();
 		}
-
 	}
 
 	_onPropertyChange = (flower, validationModel) => {
@@ -70,21 +90,40 @@ export class AddFlower extends Component {
 
 	_onSave = () => {
 		const {flower} = this.state;
-		const {createFlower} = this.props;
+		const {createFlower, updateFlower, history} = this.props;
 		const validationModel = validateFlowerForm(flower);
+		console.log(validationModel)
 		this.setState({ 
 			validationModel,
 			showValidationError: !validationModel.isValid,
 		});
 		if(validationModel.isValid) {
 			const fd = new FormData();
+			if(flower.profile_picture.name){
 			fd.append('profile_picture', flower.profile_picture, flower.profile_picture.name)
+			}else {
+				fd.append('id', flower.id);
+			}
+			
 			fd.append('name', flower.name);
 			fd.append('description', flower.description);
 			fd.append('latin_name', flower.latin_name);
 
-			createFlower(fd);
+			if(flower.id) {
+				updateFlower(flower)
+				history.push(`/${flower.id}`)
+			}else {
+				createFlower(fd);
+			}
 		}
+	}
+
+	_resetFlower = () => {
+		this.setState({
+			flower: new Flower(),
+			validationModel: new ValidationModel(),
+			showValidationError: false
+		})
 	}
 
 	render(){
@@ -94,7 +133,7 @@ export class AddFlower extends Component {
 		const params = new URLSearchParams(location.search);
 
 		const modalProps = {
-			title: "Welcome Back",
+			title: flower.id ? "Update flower" : "Add new flower",
 			show: params.get('create') ? true : false,
 			onHide: () => history.push(location.pathname),
 			width: 600

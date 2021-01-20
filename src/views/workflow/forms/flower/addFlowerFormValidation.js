@@ -36,11 +36,6 @@ const validateFlowerForm = (flower) => {
                 validationModel.isValid = false;
 		}
 
-	// 	if(isNullOrWhitespace(flower[ATTRIBUTES.PROFILE_PICTURE])) {
-	// 		validationModel.validationMessages = validationModel.validationMessages.push('Profile picture is required');
-	// 		validationModel.isValid = false;
-	// }
-
     return validationModel;
 };
 

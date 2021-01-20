@@ -82,7 +82,7 @@ class AddFlowerForm extends Component {
 						onClick={(e) => {
 							e.preventDefault()
 							onSave()
-							}}>Create Flower</button>
+							}}>{flower.id ? 'Update Flower' : 'Create Flower'}</button>
 					</Col>
 				</Row> 
 			</Form>

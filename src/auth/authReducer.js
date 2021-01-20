@@ -5,6 +5,7 @@ import ValidationModel from '../setup/validationModel';
 
 const initialState = Map({
     user: new User(), 
+    userProfile: new User(),
     isCreating: false,
     isLoggedIn: false,
     isUpdating: false,
@@ -39,7 +40,15 @@ const authReducer = (state = initialState, action) => {
             return state.set('isDeleting', true);
         }
 
+        case AuthActionConstants.GET_PROFILE_BY_ID:{
+            return state.set('isLoadingUserProfile', true);
+        }
+
         case AuthActionConstants.GET_PROFILE: {
+            return state.set('isLoading', true);
+        }
+
+        case AuthActionConstants.LOG_OUT_USER: {
             return state.set('isLoading', true);
         }
 
@@ -48,7 +57,10 @@ const authReducer = (state = initialState, action) => {
         }
 
         case AuthActionConstants.LOG_OUT_USER_SUCCESS: {
-            return state.set('isLoggedIn', false);
+            return state.withMutations(state => {
+                state.set('isLoggedIn', false);
+                state.set('isLoading', false);
+            });
         }
         
 		case AuthActionConstants.SIGN_UP_USER_SUCCESS: {
@@ -67,6 +79,13 @@ const authReducer = (state = initialState, action) => {
 
         case AuthActionConstants.DELETE_PROFILE_SUCCESS: {
             return state.set('isDeleting', false);
+        }
+
+        case AuthActionConstants.GET_PROFILE_BY_ID_SUCCESS:{
+            return state.withMutations(state => {
+                state.set('userProfile', new User(action.payload.user));
+                state.set('isLoadingUserProfile', false);
+            });
         }
 
 		case AuthActionConstants.GET_PROFILE_SUCCESS: {
@@ -90,6 +109,10 @@ const authReducer = (state = initialState, action) => {
 
         case AuthActionConstants.DELETE_PROFILE_ERROR: {
             return state.set('isDeleting', false)
+        }
+
+        case AuthActionConstants.GET_PROFILE_BY_ID_ERROR: {
+            return state.set('isLoadingUserProfile', false);
         }
 
         case AuthActionConstants.CHECK_USER_LOGGED_IN: {

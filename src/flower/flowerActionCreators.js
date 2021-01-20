@@ -60,6 +60,21 @@ const getFlowersError = () => ({
     payload: {}
 });
 
+const getRandomFlowers = () => ({
+    type: FlowerActionConstants.GET_RANDOM_FLOWERS,
+    payload: {}
+});
+
+const getRandomFlowersSuccess = flowers => ({
+    type: FlowerActionConstants.GET_RANDOM_FLOWERS_SUCCESS,
+    payload: flowers
+});
+
+const getRandomFlowersError = () => ({
+    type: FlowerActionConstants.GET_RANDOM_FLOWERS_ERROR,
+    payload: {}
+});
+
 const getFlowersFiltered = (filter) => ({
     type: FlowerActionConstants.GET_FLOWERS_FILTERED,
     payload: filter
@@ -90,6 +105,36 @@ const getFavoriteFlowersError = () => ({
     payload: {}
 });
 
+const setSightings = flower => ({
+    type: FlowerActionConstants.SET_SIGHTNINGS,
+    payload: flower
+});
+
+const setSightingsSuccess = flower => ({
+    type: FlowerActionConstants.SET_SIGHTNINGS_SUCCESS,
+    payload: flower
+});
+
+const deleteFlower = id => ({
+    type: FlowerActionConstants.DELETE_FLOWER,
+    payload: id
+});
+
+
+const deleteFlowerSuccess = () => ({
+    type: FlowerActionConstants.DELETE_FLOWER_SUCCESS
+});
+
+const deleteFlowerError = error => ({
+    type: FlowerActionConstants.DELETE_FLOWER_ERROR,
+    payload: error
+});
+
+const setSightingsError = () => ({
+    type: FlowerActionConstants.SET_SIGHTNINGS_ERROR,
+    payload: {}
+});
+
 const markFlowerFavorite = id => ({
     type: FlowerActionConstants.MARK_FLOWER_FAVORITE,
     payload: id
@@ -112,6 +157,9 @@ export default {
     updateFlower,
     updateFlowerError,
     updateFlowerSuccess,
+    getRandomFlowers,
+    getRandomFlowersSuccess,
+    getRandomFlowersError,
     getFlowerById,
     getFlowerByIdSuccess,
     getFlowerByIdError,
@@ -126,5 +174,11 @@ export default {
     getFavoriteFlowersError,
     markFlowerFavorite,
     markFlowerFavoriteSuccess,
+    setSightings,
+    setSightingsSuccess,
+    setSightingsError,
+    deleteFlower,
+    deleteFlowerError,
+    deleteFlowerSuccess,
     resetFlowers
 }

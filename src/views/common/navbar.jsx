@@ -111,7 +111,7 @@ class NavigationBar extends Component {
 								) : (
 								<Nav.Item>
 										<Link to={{pathname: location.pathname, search: '?profile=true'}} className="no-underline">
-											<span className="navbar-link">{`${user.first_name} ${user.last_name}`}</span>
+											<span className="navbar-link">{user.is_admin ?`${user.first_name}` : `${user.first_name} ${user.last_name}`}</span>
 											<img src={profilePicNav} />
 										</Link>
 								</Nav.Item>

@@ -26,12 +26,24 @@ class FlowerApi {
         return Api.getJson(`${FlowerApi.baseUrl}`);
     }
 
+    static getRandomFlowers() {
+        return Api.getJson(`${FlowerApi.baseUrl}/random`);
+    }
+
     static getFavoriteFlowers() {
         return Api.getJson(`${FlowerApi.baseUrl}/favorites`);
     }
 
     static markFlowerFavorite(id) {
-        return Api.postJson(`${FlowerApi.baseUrl}/${id}/favorites`);
+        return Api.putJson(`${FlowerApi.baseUrl}/${id}/favorites`);
+    }
+    
+    static setSightings(flower) {
+        return Api.putJson(`${FlowerApi.baseUrl}/${flower.id}/sightnings`, flower);
+    }
+
+    static deleteFlower(flowerId) {
+        return Api.deleteJson(`${FlowerApi.baseUrl}/${flowerId}`);
     }
 }
 

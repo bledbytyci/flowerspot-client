@@ -74,10 +74,21 @@ function* doDeleteProfile(action) {
 
 function* doGetProfile() {
     const { response, errorResponse } = yield call(AuthApi.getProfile);
-    console.log(response.data)
     if(response) {
         if(response.status === HttpResponseCodes.OK) {
 			yield put(AuthActionCreators.getProfileSuccess(response.data));
+        }
+    }
+    else if(errorResponse) {
+        console.log('Following error occurred: ', errorResponse);
+    }
+}
+
+function* doGetProfileById(action) {
+    const { response, errorResponse } = yield call(AuthApi.getProfileById, action.payload);
+    if(response) {
+        if(response.status === HttpResponseCodes.OK) {
+			yield put(AuthActionCreators.getProfileByIdSuccess(response.data));
         }
     }
     else if(errorResponse) {
@@ -91,5 +102,6 @@ export default [
 	takeLatest(AuthActionConstants.EDIT_PROFILE, doEditProfile),
 	takeLatest(AuthActionConstants.DELETE_PROFILE, doDeleteProfile),
     takeLatest(AuthActionConstants.GET_PROFILE, doGetProfile),
-    takeLatest(AuthActionConstants.LOG_OUT_USER, doLogOut)
+    takeLatest(AuthActionConstants.LOG_OUT_USER, doLogOut),
+    takeLatest(AuthActionConstants.GET_PROFILE_BY_ID, doGetProfileById)
 ];

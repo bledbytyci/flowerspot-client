@@ -104,6 +104,14 @@
 	padding-bottom: 15vh;
 }
 
+.flower-header {
+	padding: 5vh 0;
+	background-image: linear-gradient(to right, #b9847e , #d4c0bd);
+    background-position: center center;
+    background-size: cover;
+	color: #FFFFFF;
+}
+
 @media screen and (max-width: 992px) and (min-width: 441px) {
 	.card-img{
 		height: 290px;

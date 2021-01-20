@@ -17,7 +17,6 @@ describe('FlowersPage component', () => {
 		}
 		const flowersPageComponent = shallow(<FlowersPage {...props} />);
         expect(flowersPageComponent).not.toBe(null);
-		expect(props.getFlowers).toBeCalled();
 	});
 });
 

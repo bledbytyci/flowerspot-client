@@ -50,6 +50,21 @@ const getProfileSuccess = user => ({
     payload: user
 });
 
+const getProfileById = id => ({
+    type: AuthActionConstants.GET_PROFILE_BY_ID,
+    payload: id
+});
+
+const getProfileByIdSuccess = user => ({
+    type: AuthActionConstants.GET_PROFILE_BY_ID_SUCCESS,
+    payload: user
+});
+
+const getProfileByIdError = user => ({
+    type: AuthActionConstants.GET_PROFILE_BY_ID_ERROR,
+    payload: user
+});
+
 const checkUserIsLoggedIn = () => ({
     type: AuthActionConstants.CHECK_USER_LOGGED_IN,
     payload: {}
@@ -95,7 +110,10 @@ export default {
     signUpSuccess,
 	signUpUserError,
 	getProfile,
-	getProfileSuccess,
+    getProfileSuccess,
+    getProfileById,
+    getProfileByIdSuccess,
+    getProfileByIdError, 
     checkUserIsLoggedIn,
     editProfile,
     editProfileSuccess,

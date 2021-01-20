@@ -8,6 +8,7 @@ const initialState = Map({
     flowers: List(),
     validationModel: new ValidationModel(),
     isMarkedAsFavorite: false,
+    isLoadingSightnings: false,
     isLoading: false,
     isCreating: false,
     isUpdating: false,
@@ -22,6 +23,10 @@ const flowerReducer = (state = initialState, action) => {
         }
 
         case FlowerActionConstants.GET_FLOWERS: {
+            return state.set('isLoadingFlowers', true);
+        }
+
+        case FlowerActionConstants.GET_RANDOM_FLOWERS: {
             return state.set('isLoadingFlowers', true);
         }
         
@@ -40,6 +45,10 @@ const flowerReducer = (state = initialState, action) => {
         case FlowerActionConstants.UPDATE_FLOWER: {
             return state.set('isUpdating', true);
         }
+
+        case FlowerActionConstants.SET_SIGHTNINGS: {
+            return state.set('isLoadingSightnings', true);
+        }
         
         case FlowerActionConstants.GET_FLOWER_BY_ID_SUCCESS: {
             return state.withMutations(state => {
@@ -49,6 +58,13 @@ const flowerReducer = (state = initialState, action) => {
         }
 
         case FlowerActionConstants.GET_FLOWERS_SUCCESS: {
+            return state.withMutations(state => {
+                state.set('flowers', List(Flower.mapFromApiList(action.payload.flowers)));
+                state.set('isLoadingFlowers', false);
+            });
+        }
+
+        case FlowerActionConstants.GET_RANDOM_FLOWERS_SUCCESS: {
             return state.withMutations(state => {
                 state.set('flowers', List(Flower.mapFromApiList(action.payload.flowers)));
                 state.set('isLoadingFlowers', false);
@@ -73,6 +89,13 @@ const flowerReducer = (state = initialState, action) => {
             return state.withMutations(state => {
                 state.set('flower', new Flower(action.payload));
                 state.set('isCreating', false);
+            });
+        }
+
+        case FlowerActionConstants.SET_SIGHTNINGS_SUCCESS: {
+            return state.withMutations(state => {
+                state.set('flower', new Flower(action.payload));
+                state.set('isLoadingSightnings', false);
             });
         }
 
@@ -104,7 +127,15 @@ const flowerReducer = (state = initialState, action) => {
                 state.set('isLoadingFlowers', false);
             });
         }
+
         case FlowerActionConstants.GET_FLOWERS_ERROR: {
+            return state.withMutations(state => {
+                state.set('flowers', List());
+                state.set('isLoadingFlowers', false);
+            });
+        }
+
+        case FlowerActionConstants.GET_RANDOM_FLOWERS_ERROR: {
             return state.withMutations(state => {
                 state.set('flowers', List());
                 state.set('isLoadingFlowers', false);
@@ -116,6 +147,22 @@ const flowerReducer = (state = initialState, action) => {
                 state.set('flowers', List());
                 state.set('isLoadingFlowers', false);
             });
+        }
+
+        case FlowerActionConstants.DELETE_FLOWER: {
+            return state.set('isDeleting', true);
+        }
+
+        case FlowerActionConstants.DELETE_FLOWER_SUCCESS: {
+            return state.set('isDeleting', false);
+        }
+
+        case FlowerActionConstants.DELETE_FLOWER_ERROR: {
+            return state.set('isDeleting', false)
+        }
+        
+        case FlowerActionConstants.SET_SIGHTNINGS_ERROR: {
+            return state.set('isLoadingSightnings', false);
         }
 
         case FlowerActionConstants.RESET_FLOWERS: {
