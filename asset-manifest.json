@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/flowerspot-client/static/css/main.6afba76d.chunk.css",
+    "main.js": "/flowerspot-client/static/js/main.a2f28631.chunk.js",
+    "main.js.map": "/flowerspot-client/static/js/main.a2f28631.chunk.js.map",
+    "runtime-main.js": "/flowerspot-client/static/js/runtime-main.61e5ebff.js",
+    "runtime-main.js.map": "/flowerspot-client/static/js/runtime-main.61e5ebff.js.map",
+    "static/css/2.c12f568f.chunk.css": "/flowerspot-client/static/css/2.c12f568f.chunk.css",
+    "static/js/2.0465294e.chunk.js": "/flowerspot-client/static/js/2.0465294e.chunk.js",
+    "static/js/2.0465294e.chunk.js.map": "/flowerspot-client/static/js/2.0465294e.chunk.js.map",
+    "static/js/3.bf89e300.chunk.js": "/flowerspot-client/static/js/3.bf89e300.chunk.js",
+    "static/js/3.bf89e300.chunk.js.map": "/flowerspot-client/static/js/3.bf89e300.chunk.js.map",
+    "index.html": "/flowerspot-client/index.html",
+    "static/css/2.c12f568f.chunk.css.map": "/flowerspot-client/static/css/2.c12f568f.chunk.css.map",
+    "static/css/main.6afba76d.chunk.css.map": "/flowerspot-client/static/css/main.6afba76d.chunk.css.map",
+    "static/js/2.0465294e.chunk.js.LICENSE.txt": "/flowerspot-client/static/js/2.0465294e.chunk.js.LICENSE.txt",
+    "static/media/header.css": "/flowerspot-client/static/media/flower.af0c4833.png",
+    "static/media/logo.46b37d33.svg": "/flowerspot-client/static/media/logo.46b37d33.svg",
+    "static/media/profile-holder.85bbd9bf.png": "/flowerspot-client/static/media/profile-holder.85bbd9bf.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.61e5ebff.js",
+    "static/css/2.c12f568f.chunk.css",
+    "static/js/2.0465294e.chunk.js",
+    "static/css/main.6afba76d.chunk.css",
+    "static/js/main.a2f28631.chunk.js"
+  ]
+}
